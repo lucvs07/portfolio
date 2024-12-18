@@ -17,7 +17,6 @@ export const ContainerHeader = styled('header', {
     },
 });
 
-export const Logo = styled('img', {});
 
 export const Title = styled('h1', {
     color: '$snow',

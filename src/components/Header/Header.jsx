@@ -1,10 +1,11 @@
 import React from "react";
-import {ContainerHeader, Logo, Title} from './styles.ts'
+import {ContainerHeader, Title} from './styles.ts'
+import {Logo} from '../Logo/Logo'
 
 export function Header(){
     return (
         <ContainerHeader>
-            <Logo src="/public/logo.svg"></Logo>
+            <Logo /> 
             <Title>PORTFOLIO</Title>
         </ContainerHeader>
     )
