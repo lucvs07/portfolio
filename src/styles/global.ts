@@ -35,7 +35,10 @@ export const globalStyles = globalCss({
         height: '100vh',
         overflowX: 'hidden',
         overflowY: 'auto',
-        backgroundColor: '$black05'
+        backgroundColor: '$black10',
+        backgroundImage: 'url("/patern-2.png")',
+        backgroundRepeat: 'repeat',
+        backgroundSize: '1%',
     },
     img: {
         display: 'block',
