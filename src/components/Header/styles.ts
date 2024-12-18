@@ -6,7 +6,7 @@ export const ContainerHeader = styled('header', {
     padding: '1rem',
     gap: '1rem',
     backgroundColor: '$black10',
-    boxShadow: '0px 1px 4px 0px $black15',
+    boxShadow: '0px 0px 6531.84px 0px rgba(255, 175, 71, 0.25), 0px 0px 3732.48px 0px rgba(255, 175, 71, 0.25), 0px 0px 2177.28px 0px rgba(255, 175, 71, 0.25), 0px 0px 1088.64px 0px rgba(255, 175, 71, 0.25), 0px 0px 311.04px 0px rgba(255, 175, 71, 0.25), 0px 0px 155.52px 0px rgba(255, 175, 71, 0.25)',
     zIndex: 100,
     position: 'fixed',
     top: 0,
@@ -15,6 +15,7 @@ export const ContainerHeader = styled('header', {
     '@sm': {
         padding: '1rem 2rem',
     },
+    borderRadius: '0 0 1rem 1rem',
 });
 
 
