@@ -4,8 +4,8 @@ import { ContainerCard, HeaderCard, TitleCard, DescriptionCard } from "./styles"
 const iconMap = {
     study : <Student size={160} color="#ffa737" weight="fill" />,
     projects: <Desktop size={160} color="#ffa737" weight="fill" />,
-    skills: <Toolbox size={32} color="#ffa737" weight="fill" />,
-    social: <Users size={32} color="#ffa737" weight="fill" />
+    skills: <Toolbox size={160} color="#ffa737" weight="fill" />,
+    social: <Users size={160} color="#ffa737" weight="fill" />
 
 }
 

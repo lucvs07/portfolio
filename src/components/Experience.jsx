@@ -2,7 +2,6 @@ import {
   ContactShadows,
   Environment,
   OrbitControls,
-  Sky,
 } from "@react-three/drei";
 import { useControls } from "leva";
 import { Avatar } from "./Avatar";
@@ -35,7 +34,7 @@ export const Experience = () => {
         <Avatar animation={animation} position-y={-0.5}/>
 
         <mesh scale={1} rotation-x={-Math.PI * 0.5} position-y={-0.5}>
-          <circleGeometry args={[1, 64]} />
+          <circleGeometry args={[0.8, 64]} />
           <meshToonMaterial 
             color="black"          // Cor azul para aparência futurística
             gradientMap={null}       // Use um mapa de gradiente se necessário (padrão é null)
