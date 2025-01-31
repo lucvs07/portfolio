@@ -3,16 +3,9 @@ import {
   Environment,
   OrbitControls,
 } from "@react-three/drei";
-import { useControls } from "leva";
 import { Avatar } from "./Avatar";
 
-export const Experience = () => {
-  const { animation } = useControls({
-    animation: {
-      value: "Typing",
-      options: ["Typing", "Falling", "Standing", "Stretching", "Victory", "Idle", "Salute", "Rock", "Dance", "Waving"],
-    },
-  });
+export const Experience = ({ animation }) => {
   return (
     <>
       <OrbitControls 

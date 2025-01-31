@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "./components/Experience";
 import { Header } from "./components/Header/Header";
@@ -5,16 +6,17 @@ import { Footer } from "./components/Footer/Footer";
 import { MainSection } from "./components/MainSection/MainSection";
 import { styled } from "./styles";
 function App() {
+  const [animation, setAnimation] = useState('Idle');
   return (
     <>
       <Header/>
       <MainContainer>
         <CanvasContainer>
           <Canvas shadows camera={{ position: [0, 1.5, 5], fov: 55 }}>
-            <Experience />
+            <Experience animation={animation}/>
           </Canvas>
         </CanvasContainer>
-        <MainSection/>
+        <MainSection setAnimation={setAnimation}/>
       </MainContainer>
       <Footer/>
     </>
