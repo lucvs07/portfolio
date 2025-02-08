@@ -56,11 +56,17 @@ export function Avatar(props) {
     group
   );
 
+  useFrame( () => {
+    if (group.current) {
+      group.current.position.set(-0.09,-0.5,0);
+    }
+  });
+
 
   useEffect(() => {
     actions[animation].reset().fadeIn(0.5).play();
     return () => {
-      actions[animation].reset().fadeOut(0.5);
+      actions[animation].reset().fadeOut(0.5).play();
     };
   }, [animation]);
 

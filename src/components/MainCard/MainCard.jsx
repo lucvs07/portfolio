@@ -9,9 +9,9 @@ const iconMap = {
 
 }
 
-export function MainCard(title, description, icon){
+export function MainCard({title, description, icon, onMouseEnter, onMouseLeave}) {
     return (
-        <ContainerCard>
+        <ContainerCard onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <HeaderCard>
                 <TitleCard>{title}</TitleCard>
                 <CaretCircleRight size={48} color="#ffa737" weight="fill" />

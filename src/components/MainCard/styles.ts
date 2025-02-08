@@ -11,6 +11,12 @@ export const ContainerCard = styled('div', {
     backdropFilter: 'blur(10px)',
     width: '100%',
     height: '90%',
+    transition: 'all 0.3s ease-in-out',
+    "&:hover": {
+        transform: 'scale(1.02)',
+        boxShadow: '0px 0px 15px 0px #FF9E1F, 0px 0px 8px 0px #FF9E1F, 0px 0px 2px 0px #FF9E1F, 0px 0px 1px 0px #FF9E1F',
+        transition: 'all 0.3s ease-in-out',
+    },
 });
 
 export const HeaderCard = styled('div', {
@@ -41,4 +47,5 @@ export const DescriptionCard = styled('p', {
     lineHeight: '36px',
     textTransform: 'capitalize',
     letterSpacing: '0.48px',
+    width: '100%',
 });
