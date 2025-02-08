@@ -24,6 +24,7 @@ export const ContainerHeader = styled('header', {
     },
     borderRadius: '0 0 1rem 1rem',
     width: '100%',
+    height: '80px',
 });
 
 

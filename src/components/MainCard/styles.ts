@@ -8,7 +8,9 @@ export const ContainerCard = styled('div', {
     borderRadius: '24px',
     border: '1px solid rgba(32, 31, 29, 0.20)',
     backgroundColor: 'rgba(32, 31, 29, 0.46)',
-    backdropFilter: 'blur(10px)',   
+    backdropFilter: 'blur(10px)',
+    width: '100%',
+    height: '90%',
 });
 
 export const HeaderCard = styled('div', {
