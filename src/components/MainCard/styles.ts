@@ -1,5 +1,6 @@
 import { styled } from '../../styles';
 export const ContainerCard = styled('div', {
+    cursor: 'pointer',
     display: 'flex',
     padding: '24px',
     flexDirection: 'column',
@@ -45,7 +46,6 @@ export const DescriptionCard = styled('p', {
     fontStyle: 'normal',
     fontWeight: 500,
     lineHeight: '36px',
-    textTransform: 'capitalize',
     letterSpacing: '0.48px',
     width: '100%',
 });
