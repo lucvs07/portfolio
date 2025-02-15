@@ -6,6 +6,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { MainSection } from "../../components/MainSection/MainSection";
 import { MainContainer, CanvasContainer} from "./styles";
 
+
 function Home() {
   const [animation, setAnimation] = useState('Idle');
   return (

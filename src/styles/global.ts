@@ -44,4 +44,9 @@ export const globalStyles = globalCss({
         display: 'block',
         maxWidth: '100%',
     },
+    a: {
+        textDecoration: 'none',
+        color: 'inherit',
+    },
+    
 });

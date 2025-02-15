@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import Home from './Pages/Home/Home.jsx'
+import { BrowserRouter } from 'react-router-dom'
 import { globalStyles } from './styles/global'
+import App from './app.jsx'
 
 globalStyles()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Home/>
-  </React.StrictMode>,
-)
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
