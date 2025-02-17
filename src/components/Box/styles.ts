@@ -7,7 +7,17 @@ export const Icon = styled('div', {
     justifyContent: 'center',
     borderRadius: '1rem',
     backgroundColor: '$orange10',
+    transition: 'all 0.3s ease-in-out',
+    "&:hover": {
+        cursor: 'pointer',
+        transform: 'scale(1.02)',
+        boxShadow: '0px 0px 15px 0px #0f0f0e, 0px 0px 8px 0px #201F1D, 0px 0px 2px 0px #201F1D, 0px 0px 1px 0px #201F1D',
+        transition: 'all 0.3s ease-in-out',
+    },
 })
+export const Link = styled('a', {
+    display: 'flex',
+});
 export const Line2 = styled('div', {
     display: 'flex',
     height: '100%',
@@ -22,7 +32,15 @@ export const TextH4 = styled('h4', {
     fontFamily: '$chillax',
     fontWeight: '500',
     textTransform: 'capitalize',
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
+    variants: {
+        social: {
+            true: {
+                fontSize: 36,
+                fontWeight: '600',
+            },
+        },
+    },
 });
 
 export const TextP = styled('p', {
@@ -30,7 +48,15 @@ export const TextP = styled('p', {
     fontSize: 20,
     fontFamily: '$chillax',
     fontWeight: '300',
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
+    variants: {
+        social:{
+            true : {
+                // Professional Networking
+                fontSize: 24, fontWeight: '400'
+            }
+        }
+    }
 });
 
 export const TextContainer = styled('div', {
@@ -56,5 +82,12 @@ export const BoxBox = styled('div', {
         transform: 'scale(1.02)',
         boxShadow: '0px 0px 15px 0px #FF9E1F, 0px 0px 8px 0px #FF9E1F, 0px 0px 2px 0px #FF9E1F, 0px 0px 1px 0px #FF9E1F',
         transition: 'all 0.3s ease-in-out',
+    },
+    variants: {
+        social: {
+            true: {
+                height: '80%',
+            },
+        },
     },
 });
