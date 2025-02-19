@@ -1,6 +1,6 @@
 import React from "react";
-import { BoxBox,TextContainer,TextH4, TextP ,Icon, Line2, Link} from "./styles";
-import { GraduationCap, Medal, LinkedinLogo, GithubLogo, Code, BehanceLogo } from "@phosphor-icons/react";
+import { BoxBox,TextContainer,TextH4, TextP ,Icon, Line2, Link, LinkBox} from "./styles";
+import { GraduationCap, Medal, LinkedinLogo, GithubLogo, Code, BehanceLogo, ArrowsOutSimple } from "@phosphor-icons/react";
 
 const iconMap = {
     study : <GraduationCap size={36} color="#353431" weight="regular" />,
@@ -8,9 +8,10 @@ const iconMap = {
     linkedin : <LinkedinLogo size={36} color="#353431" weight="regular" />,
     github : <GithubLogo size={36} color="#353431" weight="regular" />,
     code : <Code size={36} color="#353431" weight="regular" />,
-    behance : <BehanceLogo size={36} color="#353431" weight="regular" />
+    behance : <BehanceLogo size={36} color="#353431" weight="regular" />,
+    out : <ArrowsOutSimple size={36} color="#353431" weight="regular" />
 }
-export default function Box({ title, description, icon, social,link ,children}) {
+export default function Box({ title, description, icon, social,link, project,children}) {
     return (
         <BoxBox social={social}>
             <Line2></Line2>
@@ -19,10 +20,20 @@ export default function Box({ title, description, icon, social,link ,children}) 
                 <TextP social={social}>{description}</TextP>
             </TextContainer>
             {link? (
-                <Link href={link} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-                    <Icon>{iconMap[icon]}</Icon> 
-                </Link>
-            ) : (
+                project ? (
+                    <LinkBox>
+                        <Link href={link} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                            <Icon>{iconMap[icon]}</Icon> 
+                        </Link>
+                        <Link href={link} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                            <Icon>{iconMap["out"]}</Icon> 
+                        </Link>
+                    </LinkBox>
+                ) : (
+                    <Link href={link} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                        <Icon>{iconMap[icon]}</Icon> 
+                    </Link>
+            )) : (
                 <Icon>{iconMap[icon]}</Icon>
             )
             }

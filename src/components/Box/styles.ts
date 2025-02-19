@@ -17,6 +17,7 @@ export const Icon = styled('div', {
 })
 export const Link = styled('a', {
     display: 'flex',
+    height : '100%',
 });
 export const Line2 = styled('div', {
     display: 'flex',
@@ -91,3 +92,13 @@ export const BoxBox = styled('div', {
         },
     },
 });
+
+export const LinkBox = styled('div', {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    height: '100%',
+})

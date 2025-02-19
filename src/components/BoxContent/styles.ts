@@ -9,5 +9,5 @@ export const ContainerPage = styled('div', {
     backgroundColor: 'rgba(32, 31, 29, 0.46)',
     backdropFilter: 'blur(10px)',
     gridArea: '1 / 1 / -1 / -1',
-    height: '90%',
+    height: '100%',
 });
