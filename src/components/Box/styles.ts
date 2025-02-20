@@ -102,3 +102,66 @@ export const LinkBox = styled('div', {
     alignSelf: 'stretch',
     height: '100%',
 })
+
+export const Modal = styled('dialog', {
+    position: "fixed",         
+    top: "50%",                
+    left: "50%",               
+    transform: "translate(-50%, -50%)",
+    borderRadius: '1rem',
+    border: 'none',
+    outline: 'none',
+    backgroundColor: '#353431',
+    padding: '1rem',
+    transition: 'all 0.3s ease-in-out',
+    "&:hover": {
+        boxShadow: '0px 0px 15px 0px #FF9E1F, 0px 0px 8px 0px #FF9E1F, 0px 0px 2px 0px #FF9E1F, 0px 0px 1px 0px #FF9E1F',
+        scale: '1.05',
+    },
+    "&::backdrop": {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    "&:focus":{
+        outline: 'none !important',
+    }
+})
+
+export const ModalContainer = styled('div', {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.8rem',
+})
+
+export const HeadModal = styled('div', {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '1rem',
+});
+
+export const H2Modal = styled('h2', {
+    color: '$snow',
+    fontSize: '2.5rem',
+    fontFamily: '$chillax',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    wordWrap: 'break-word',
+})
+
+export const H3Modal = styled('h3', {
+    color: '$snow',
+    fontSize: '1.5rem',
+    fontFamily: '$chillax',
+    fontWeight: '500',
+    textTransform: 'capitalize',
+    wordWrap: 'break-word',
+});
+
+export const PModal = styled('p', {
+    color: '$snow',
+    fontSize: '1rem',
+    fontFamily: '$chillax',
+    fontWeight: '300',
+    wordWrap: 'break-word',
+})
