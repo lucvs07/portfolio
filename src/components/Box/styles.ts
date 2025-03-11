@@ -114,6 +114,7 @@ export const Modal = styled('dialog', {
     backgroundColor: '#353431',
     padding: '1rem',
     transition: 'all 0.3s ease-in-out',
+    minWidth: '40%',
     "&:hover": {
         boxShadow: '0px 0px 15px 0px #FF9E1F, 0px 0px 8px 0px #FF9E1F, 0px 0px 2px 0px #FF9E1F, 0px 0px 1px 0px #FF9E1F',
         scale: '1.05',

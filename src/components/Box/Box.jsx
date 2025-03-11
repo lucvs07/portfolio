@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { BoxBox,TextContainer,TextH4, TextP ,Icon, Line2, Link, LinkBox, Modal, HeadModal, H2Modal, ModalContainer, H3Modal, PModal} from "./styles";
 import { GraduationCap, Medal, LinkedinLogo, GithubLogo, Code, BehanceLogo, ArrowsOutSimple, XCircle} from "@phosphor-icons/react";
 import { styled } from "@stitches/react";
+import projects from "../../assets/data/projects.json";
 
 const iconMap = {
     study : <GraduationCap size={36} color="#353431" weight="regular" />,
@@ -13,6 +14,7 @@ const iconMap = {
     behance : <BehanceLogo size={36} color="#353431" weight="regular" />,
     out : <ArrowsOutSimple size={36} color="#353431" weight="regular" />,
 }
+
 
 const HoverIcon = styled(XCircle, {
     transition: 'all 0.3s ease-in-out',
@@ -27,18 +29,24 @@ const HoverIcon = styled(XCircle, {
 
 export default function Box({ title, description, icon, social,link, project,children}) {
     const dialogRef = useRef(null);
+    const projetos = projects.projetos;
+    const projeto = projetos.find(proj => proj.nome === title);
+
     return (
         <>
-            <Modal ref={dialogRef}>
-                <ModalContainer>
-                    <HeadModal>
-                        <H2Modal>Titulo do Projeto</H2Modal>
-                        <HoverIcon size={48} color="#353431" weight="fill" onClick={() => dialogRef.current?.close()}/>
-                    </HeadModal>
-                    <H3Modal>Tecnologias</H3Modal>
-                    <PModal>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus quaerat ad cumque rem! Molestiae iusto quibusdam dolorem nisi? Nesciunt sequi labore similique adipisci minus ut illum saepe itaque laudantium!</PModal>
-                </ModalContainer>
-            </Modal>
+            {projeto && (
+                <Modal ref={dialogRef}>
+                    <ModalContainer>
+                        <HeadModal>
+                            <H2Modal>{projeto.nome}</H2Modal>
+                            <HoverIcon size={48} color="#353431" weight="fill" onClick={() => dialogRef.current?.close()} />
+                        </HeadModal>
+                        <H3Modal>Tecnologias</H3Modal>
+                        <PModal>{projeto.tech.join(', ')}</PModal>
+                        <PModal>{projeto.descricao}</PModal>
+                    </ModalContainer>
+                </Modal>
+            )}
             <BoxBox social={social}>
                 <Line2></Line2>
                 <TextContainer>

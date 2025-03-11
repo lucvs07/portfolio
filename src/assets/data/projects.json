@@ -1,0 +1,40 @@
+{
+    "projetos": [
+        {
+            "id": 1,
+            "nome": "DeereGo",
+            "descricao": "System for IoT-Based Logistics Optimization in Manufacturing",
+            "tech": ["React", "Node", "MongoDB"]
+        },
+        {
+            "id": 2,
+            "nome": "CARI",
+            "descricao": "System for Sustainable Food Organization and Consumption",
+            "tech": ["PHP", "SQL", "HTML", "CSS"]
+        },
+        {
+            "id": 3,
+            "nome": "Pokédex",
+            "descricao": "Web App to search for Pokémon information",
+            "tech": ["JS", "HTML", "CSS"]
+        },
+        {
+            "id": 4,
+            "nome": "DeereGo - ESP32",
+            "descricao": "IoT Solution to Locate and Monitor Assets",
+            "tech": ["C++", "ESP32"]
+        },
+        {
+            "id": 5,
+            "nome": "Hungerdle",
+            "descricao": "Web Game to guess the character from Hunger Games",
+            "tech": ["React", "Node", "MongoDB"]
+        },
+        {
+            "id": 6,
+            "nome": "One Way",
+            "descricao": "Web System for a Clothing Store",
+            "tech": ["PHP", "SQL", "HTML", "CSS"]
+        }
+    ]
+}

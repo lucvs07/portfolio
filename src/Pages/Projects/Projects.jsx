@@ -15,7 +15,7 @@ function Projects() {
         <BoxContent title='Projects' description='Explore my projects, where ideas come to life through code.'>
           <GridProjects>
             <Box
-              title='DeereGO'
+              title='DeereGo'
               description='System for IoT-Based Logistics Optimization in Manufacturing'
               icon='github'
               social={true}
