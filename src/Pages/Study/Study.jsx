@@ -4,7 +4,8 @@ import { Footer } from "../../components/Footer/Footer";
 import { MainContainer } from "../Home/styles";
 import BoxContent from "../../components/BoxContent/BoxContent";
 import Box from "../../components/Box/Box";
-import { GridStudy, HeaderContent, Line, Subtitle, ContainerBox } from "./styles";
+import TitleContent from "../../components/TitleContent/TitleContent";
+import { GridStudy,ContainerBox } from "./styles";
 
 
 
@@ -16,10 +17,7 @@ function Study() {
         <BoxContent title="Study" description="Education is a journey. Here’s where I sharpen my skills and stay current.">
           <GridStudy>
             <ContainerBox>
-              <HeaderContent>
-                <Subtitle>Education</Subtitle>
-                <Line></Line>
-              </HeaderContent>
+              <TitleContent title="Education"/>
               <Box
                 title='FIAP - Computer Engineering'
                 description='Bachelor Deegree - 2024 to 2028'
@@ -33,10 +31,7 @@ function Study() {
             </ContainerBox>
             
             <ContainerBox>
-              <HeaderContent>
-                <Subtitle>Honors and Awards</Subtitle>
-                <Line></Line>
-              </HeaderContent>
+              <TitleContent title="Honors and Awards"/>
               <Box
                 title='Podium Challenge FIAP 2024'
                 description='Developed a location system with John Deere'

@@ -22,7 +22,7 @@ export const MainSection = ({setAnimation}) => {
                     onMouseEnter={() => handleMouseEnter("Rock")}
                     onMouseLeave={() => handleMouseEnter("Standing")}
                     title="Skills"
-                    description="Discover the skills that drive my work."
+                    description="My skills are the result of my experiences and my constant search for knowledge."
                     icon="skills"
                 />
             </Link>

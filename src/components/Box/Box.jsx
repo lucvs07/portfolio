@@ -41,8 +41,8 @@ export default function Box({ title, description, icon, social,link, project,chi
                             <H2Modal>{projeto.nome}</H2Modal>
                             <HoverIcon size={48} color="#353431" weight="fill" onClick={() => dialogRef.current?.close()} />
                         </HeadModal>
-                        <H3Modal>Tecnologias</H3Modal>
-                        <PModal>{projeto.tech.join(', ')}</PModal>
+                        <H3Modal>Tech</H3Modal>
+                        <PModal>{projeto.tech.join(' ● ')}</PModal>
                         <PModal>{projeto.descricao}</PModal>
                     </ModalContainer>
                 </Modal>
