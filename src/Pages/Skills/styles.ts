@@ -10,7 +10,6 @@ export const ContainerBox = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: '2rem',
-    alignItems: 'center',
 });
 
 export const SkillsP = styled('p', {
@@ -21,4 +20,10 @@ export const SkillsP = styled('p', {
     textTransform: 'capitalize',
     lineHeight: 1.5,
     letterSpacing: 0.32,
+});
+
+export const FlexIcons = styled('div', {
+    display: 'flex',
+    gap: '1rem',
+    flexDirection: 'row',
 });
