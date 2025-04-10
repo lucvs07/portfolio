@@ -1,0 +1,56 @@
+{
+    "skills" : [
+        {
+            "name": "Javascript",
+            "description": "A versatile programming language primarily used for web development."
+        },
+        {
+            "name": "NodeJs",
+            "description": "A runtime environment for executing JavaScript code server-side."
+        },
+        {
+            "name": "React",
+            "description": "A JavaScript library for building user interfaces."
+        },
+        {
+            "name": "PHP",
+            "description": "A server-side scripting language designed for web development."
+        },
+        {
+            "name": "Python",
+            "description": "A high-level programming language known for its readability and versatility."
+        },
+        {
+            "name": "Figma",
+            "description": "A collaborative interface design tool."
+        },
+        {
+            "name": "CSS",
+            "description": "A stylesheet language used for describing the presentation of a document written in HTML."
+        },
+        {
+            "name": "Tailwind",
+            "description": "A utility-first CSS framework for rapid UI development."
+        },
+        {
+            "name": "SQL",
+            "description": "A language for managing and querying relational databases."
+        },
+        {
+            "name": "MongoDB",
+            "description": "A NoSQL database program that uses JSON-like documents."
+        },
+        {
+            "name": "Pandas",
+            "description": "A Python library for data manipulation and analysis."
+        },
+        {
+            "name": "C++",
+            "description": "A general-purpose programming language with low-level memory manipulation capabilities."
+        },
+        {
+            "name": "Excel",
+            "description": "A spreadsheet program used for data organization and analysis."
+        }
+    ]
+}

@@ -4,37 +4,43 @@
             "id": 1,
             "nome": "DeereGo",
             "descricao": "System for IoT-Based Logistics Optimization in Manufacturing. This project aims to streamline logistics processes by integrating IoT devices to monitor and optimize the flow of materials and products.",
-            "tech": ["React", "Node", "MongoDB"]
+            "tech": ["React", "Node", "MongoDB"],
+            "link" : "https://github.com/An4lu/DeereGO"
         },
         {
             "id": 2,
             "nome": "CARI",
             "descricao": "System for Sustainable Food Organization and Consumption. This project focuses on reducing food waste and promoting sustainable consumption by connecting consumers with local food sources.",
-            "tech": ["PHP", "SQL", "HTML", "CSS"]
+            "tech": ["PHP", "SQL", "HTML", "CSS"],
+            "link" : "https://github.com/lucvs07/CARI"
         },
         {
             "id": 3,
             "nome": "Pokédex",
             "descricao": "Web App to search for Pokémon information. This project provides a comprehensive database of Pokémon, allowing users to search for and learn about different Pokémon species.",
-            "tech": ["JS", "HTML", "CSS"]
+            "tech": ["JS", "HTML", "CSS"],
+            "link":"https://github.com/lucvs07/pokedex"
         },
         {
             "id": 4,
             "nome": "DeereGo - ESP32",
             "descricao": "IoT Solution to Locate and Monitor Assets. This project uses ESP32 microcontrollers to track and monitor the location and status of assets in real-time.",
-            "tech": ["C++", "ESP32"]
+            "tech": ["C++", "ESP32"],
+            "link": "https://github.com/lucvs07/deereGO-ES"
         },
         {
             "id": 5,
             "nome": "Hungerdle",
             "descricao": "Web Game to guess the character from Hunger Games. This project is an interactive game where players guess the identity of characters from the Hunger Games series based on clues.",
-            "tech": ["React", "Node", "MongoDB"]
+            "tech": ["React", "Node", "MongoDB"],
+            "link": "https://github.com/lucvs07/Api-Hunger"
         },
         {
             "id": 6,
             "nome": "One Way",
             "descricao": "Web System for a Clothing Store. This project is an e-commerce platform designed for a clothing store, featuring product listings, shopping cart functionality, and secure checkout.",
-            "tech": ["PHP", "SQL", "HTML", "CSS"]
+            "tech": ["PHP", "SQL", "HTML", "CSS"],
+            "link": "https://github.com/lucvs07/OneWay"
         }
     ]
 }

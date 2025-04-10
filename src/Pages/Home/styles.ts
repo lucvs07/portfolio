@@ -2,11 +2,11 @@ import { styled } from "../../styles";
 
 export const MainContainer = styled("main", {
   display: "grid",
-  gridTemplateColumns: "1fr 4fr", // 1 coluna para o Canvas e 2 colunas para o conteúdo
-  height: "calc(100vh - 80px)", // Altura total menos o espaço do Header/Footer
+  gridTemplateColumns: "1fr 4fr",
+  height: "calc(100vh - 80px)",
   padding: "24px",
   width: "100%",
-  marginTop: "80px", // Espaço para o Header
+  marginTop: "80px",
   alignItems: "center",
 });
 
