@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+import { themeCss } from "../lib/theme";
 import { withBase } from "../lib/url";
 
 interface Props {
@@ -13,6 +15,19 @@ const { lang, title, description } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        root.classList.add("js");
+        let t = null;
+        try { t = localStorage.getItem("theme"); } catch (e) {}
+        if (t !== "dark" && t !== "light") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        root.dataset.theme = t;
+      })();
+    </script>
+    <style is:inline set:html={themeCss()}></style>
+    <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F1EB" media="(prefers-color-scheme: light)" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={withBase("logo.svg")} />

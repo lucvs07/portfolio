@@ -1,0 +1,34 @@
+---
+interface Props { toDark: string; toLight: string }
+const { toDark, toLight } = Astro.props;
+---
+<button type="button" class="theme" data-theme-toggle data-to-dark={toDark} data-to-light={toLight} aria-label={toLight}>
+  <span class="dot" aria-hidden="true"></span>
+</button>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  const root = document.documentElement;
+  const sync = () => {
+    if (!btn) return;
+    const dark = root.dataset.theme !== "light";
+    btn.setAttribute("aria-label", (dark ? btn.dataset.toLight : btn.dataset.toDark) ?? "");
+  };
+  sync();
+  btn?.addEventListener("click", () => {
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* sem persistência */
+    }
+    sync();
+  });
+</script>
+
+<style>
+  .theme { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid var(--rule); border-radius: 999px; background: transparent; cursor: pointer; }
+  .dot { width: 0.9rem; height: 0.9rem; border-radius: 50%; background: linear-gradient(90deg, var(--text) 50%, transparent 50%); border: 1.5px solid var(--text); }
+  .theme:hover { border-color: var(--muted); }
+</style>
