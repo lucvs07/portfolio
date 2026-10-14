@@ -35,3 +35,13 @@ p { text-wrap: pretty; }
   .js [data-reveal] { opacity: 0; translate: 0 1rem; transition: opacity 0.7s ease, translate 0.7s ease; }
   .js [data-reveal].is-in { opacity: 1; translate: 0 0; }
 }
+
+/* Logo do hero (ilha React): a SVG plana aparece primeiro e some quando o 3D renderiza. */
+.logo-hero { position: absolute; inset: 0; color: var(--accent); }
+.logo-hero .glow { position: absolute; inset: 0; background: radial-gradient(42% 46% at 50% 52%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%); pointer-events: none; }
+[data-theme="light"] .logo-hero .glow { opacity: 0.55; }
+.logo-hero .flat { position: absolute; left: 50%; top: 50%; height: min(62%, 26rem); width: auto; translate: -50% -50%; transition: opacity 0.6s ease; }
+.logo-hero .canvas { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+.logo-hero[data-ready] .canvas { opacity: 1; }
+.logo-hero[data-ready] .flat { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .logo-hero .flat, .logo-hero .canvas { transition: none; } }

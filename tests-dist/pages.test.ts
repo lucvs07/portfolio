@@ -54,3 +54,10 @@ test("projects from the snapshot are rendered", () => {
 test("the 404 page exists and links home with the base", () => {
   assert.match(page("404.html"), /href="\/portfolio\/?"/);
 });
+
+test("the hero ships the flat logo in the HTML for first paint and no-JS", () => {
+  for (const p of ["index.html", "en/index.html"]) {
+    assert.match(page(p), /data-logo-static/);
+    assert.match(page(p), /<astro-island[^>]*client="idle"/);
+  }
+});
