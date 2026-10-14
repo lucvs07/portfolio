@@ -61,3 +61,14 @@ test("the hero ships the flat logo in the HTML for first paint and no-JS", () =>
     assert.match(page(p), /<astro-island[^>]*client="idle"/);
   }
 });
+
+test("link previews have title, description, image and canonical", () => {
+  for (const [p, url] of [["index.html", "https://lucvs07.github.io/portfolio/"], ["en/index.html", "https://lucvs07.github.io/portfolio/en/"]]) {
+    const html = page(p);
+    assert.match(html, new RegExp(`<link rel="canonical" href="${url}"`));
+    assert.match(html, /<meta property="og:title" content="[^"]+"/);
+    assert.match(html, /<meta property="og:description" content="[^"]+"/);
+    assert.match(html, /<meta property="og:image" content="https:\/\/lucvs07\.github\.io\/portfolio\/og\.png"/);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
+  }
+});
