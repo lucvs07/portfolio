@@ -1,0 +1,216 @@
+{
+  "generatedAt": "2026-10-14T20:20:06.845Z",
+  "projects": [
+    {
+      "repo": "lucvs07/dot-study",
+      "name": "dot-study",
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "Dockerfile",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/dot-study",
+      "demoUrl": "https://dot-study-cp5-lucas-greccos-projects.vercel.app",
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-06T22:55:42Z"
+    },
+    {
+      "repo": "lucvs07/Fiap-Skill-Match",
+      "name": "Fiap-Skill-Match",
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "tech": [
+        "Python",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Fiap-Skill-Match",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-05-05T12:57:18Z"
+    },
+    {
+      "repo": "lucvs07/ache-vision",
+      "name": "ache-vision",
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/ache-vision",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2025-11-08T19:12:58Z"
+    },
+    {
+      "repo": "lucvs07/ache-capture",
+      "name": "ache-capture",
+      "description": {
+        "en": "Repository to the Computer Vision python project",
+        "pt": "Repository to the Computer Vision python project"
+      },
+      "tech": [
+        "Python",
+        "Shell"
+      ],
+      "repoUrl": "https://github.com/lucvs07/ache-capture",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2025-11-06T21:28:49Z"
+    },
+    {
+      "repo": "An4lu/DeereGO",
+      "name": "DeereGo",
+      "description": {
+        "en": "System for IoT-based logistics optimization in manufacturing, integrating IoT devices to monitor and optimize the flow of materials and products.",
+        "pt": "Sistema de otimização logística com IoT para a indústria, integrando dispositivos IoT para monitorar e otimizar o fluxo de materiais e produtos."
+      },
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "repoUrl": "https://github.com/An4lu/DeereGO",
+      "demoUrl": "https://deerego.vercel.app",
+      "cover": "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/proposta.png",
+      "coverFile": "an4lu--deerego.png",
+      "featured": true,
+      "pushedAt": "2025-07-08T03:28:27Z"
+    },
+    {
+      "repo": "lucvs07/Api-Hunger",
+      "name": "Hungerdle",
+      "description": {
+        "en": "Web game where players guess a Hunger Games character from clues.",
+        "pt": "Jogo web em que o jogador descobre um personagem de Jogos Vorazes a partir de pistas."
+      },
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Api-Hunger",
+      "demoUrl": "https://front-hunger.vercel.app",
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2024-12-03T01:11:02Z"
+    },
+    {
+      "repo": "lucvs07/Front-Hunger",
+      "name": "Front-Hunger",
+      "description": {
+        "en": "Front-End for a IDLE game about Hunger Games's Saga",
+        "pt": "Front-End for a IDLE game about Hunger Games's Saga"
+      },
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Front-Hunger",
+      "demoUrl": "https://front-hunger.vercel.app",
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2024-11-05T01:28:57Z"
+    },
+    {
+      "repo": "lucvs07/deereGO-ESP",
+      "name": "DeereGo · ESP32",
+      "description": {
+        "en": "IoT solution that uses ESP32 microcontrollers to locate and monitor assets in real time.",
+        "pt": "Solução IoT com microcontroladores ESP32 para localizar e monitorar ativos em tempo real."
+      },
+      "tech": [
+        "C++",
+        "ESP32"
+      ],
+      "repoUrl": "https://github.com/lucvs07/deereGO-ESP",
+      "demoUrl": null,
+      "cover": "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/proposta.png",
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2024-10-26T02:37:42Z"
+    },
+    {
+      "repo": "lucvs07/pokedex",
+      "name": "Pokédex",
+      "description": {
+        "en": "Web app to search for Pokémon and learn about different species.",
+        "pt": "Aplicativo web para buscar Pokémon e conhecer diferentes espécies."
+      },
+      "tech": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "repoUrl": "https://github.com/lucvs07/pokedex",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2024-08-12T18:03:52Z"
+    },
+    {
+      "repo": "lucvs07/OneWay",
+      "name": "One Way",
+      "description": {
+        "en": "E-commerce web system for a clothing store, with product listings, cart and checkout.",
+        "pt": "Sistema web de e-commerce para uma loja de roupas, com listagem de produtos, carrinho e checkout."
+      },
+      "tech": [
+        "PHP",
+        "SQL",
+        "HTML",
+        "CSS"
+      ],
+      "repoUrl": "https://github.com/lucvs07/OneWay",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2023-12-21T03:06:26Z"
+    },
+    {
+      "repo": "lucvs07/CARI",
+      "name": "CARI",
+      "description": {
+        "en": "System for sustainable food organization and consumption, connecting consumers with local food sources to reduce waste.",
+        "pt": "Sistema para organização e consumo sustentável de alimentos, conectando consumidores a fontes locais para reduzir o desperdício."
+      },
+      "tech": [
+        "PHP",
+        "SQL",
+        "HTML",
+        "CSS"
+      ],
+      "repoUrl": "https://github.com/lucvs07/CARI",
+      "demoUrl": null,
+      "cover": null,
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2023-12-20T00:52:24Z"
+    }
+  ]
+}
