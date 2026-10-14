@@ -1,0 +1,12 @@
+---
+// Seta desenhada (o Chillax não tem os glifos ↗ e ↓). dir: "up-right" ou "down".
+interface Props { dir?: "up-right" | "down" }
+const { dir = "up-right" } = Astro.props;
+---
+<svg class:list={["arrow", dir]} viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M8 2.5v11M3 8.5l5 5 5-5" />
+</svg>
+<style>
+  .arrow { display: inline-block; width: 0.8em; height: 0.8em; vertical-align: -0.05em; margin-left: 0.2em; }
+  .up-right { rotate: -135deg; }
+</style>

@@ -1,6 +1,7 @@
 ---
 import { getDict } from "../i18n/index";
 import type { Lang } from "../i18n/types";
+import Arrow from "./Arrow.astro";
 import { SECTION_IDS } from "./sections";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -12,7 +13,7 @@ const t = getDict(lang);
     <h2 id="contact-title" class="big">{t.contact.title.replace(/\.$/, "")}<span class="dot">.</span></h2>
     <ul class="links">
       {t.contact.links.map((l) => (
-        <li><a class="link" href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${l.name} (${t.contact.opens})`}>{l.name} ↗</a></li>
+        <li><a class="link" href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${l.name} (${t.contact.opens})`}>{l.name}<Arrow /></a></li>
       ))}
     </ul>
   </div>

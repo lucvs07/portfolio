@@ -33,11 +33,17 @@ const otherLang = other === "pt" ? "pt-BR" : "en";
 
 <style>
   .bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); border-bottom: 1px solid var(--rule); }
-  .row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1rem; min-height: 4rem; }
   .brand { font-weight: 600; }
-  ul { display: none; list-style: none; gap: 2rem; font-size: 0.95rem; color: var(--muted); }
+  /* No celular as seções viram uma segunda linha que rola na horizontal. */
+  nav { order: 3; width: 100%; overflow-x: auto; scrollbar-width: none; }
+  ul { display: flex; list-style: none; gap: 1.5rem; padding-block: 0.25rem 0.75rem; font-size: 0.95rem; color: var(--muted); white-space: nowrap; }
   ul a:hover { color: var(--text); }
-  @media (min-width: 900px) { ul { display: flex; } }
+  @media (min-width: 900px) {
+    .row { flex-wrap: nowrap; }
+    nav { order: 0; width: auto; overflow: visible; }
+    ul { gap: 2rem; padding-block: 0; }
+  }
   .tools { display: flex; align-items: center; gap: 0.75rem; }
   .lang { font-weight: 600; font-size: 0.95rem; padding: 0.4rem 0.6rem; border: 1px solid var(--rule); border-radius: 999px; }
   .lang:hover { border-color: var(--muted); }

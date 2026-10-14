@@ -1,6 +1,7 @@
 ---
 import { getDict } from "../i18n/index";
 import type { Lang } from "../i18n/types";
+import Arrow from "./Arrow.astro";
 import { SECTION_IDS } from "./sections";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -12,7 +13,7 @@ const t = getDict(lang);
     <p class="lead"><strong>{t.hero.role}</strong> {t.hero.rest}</p>
   </div>
   <div class="stage"><slot name="logo" /></div>
-  <a class="index" href={`#${SECTION_IDS[lang].about}`}><span><b>01</b> — {t.nav.about}</span><span aria-hidden="true">{t.hero.scroll} ↓</span></a>
+  <a class="index" href={`#${SECTION_IDS[lang].about}`}><span><b>01</b> — {t.nav.about}</span><span aria-hidden="true">{t.hero.scroll}<Arrow dir="down" /></span></a>
 </section>
 
 <style>

@@ -31,3 +31,16 @@ export function normalizeTech(names: string[], ignore: string[] = ["portfolio", 
 export function orderProjects(list: Project[]): Project[] {
   return [...list].sort((a, b) => Number(b.featured) - Number(a.featured) || b.pushedAt.localeCompare(a.pushedAt));
 }
+
+// Qual projeto ganha o bloco grande: destaque com capa e descrição; senão, qualquer um com
+// descrição; senão, o primeiro. Evita um bloco grande vazio quando o About ainda não foi preenchido.
+export function pickFeatured(list: Project[], lang: "pt" | "en"): Project | undefined {
+  const described = (p: Project) => p.description[lang].trim() !== "";
+  return (
+    list.find((p) => p.featured && p.coverFile && described(p)) ??
+    list.find((p) => p.featured && described(p)) ??
+    list.find((p) => p.coverFile && described(p)) ??
+    list.find(described) ??
+    list[0]
+  );
+}
