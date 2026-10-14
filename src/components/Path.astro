@@ -14,7 +14,7 @@ const t = getDict(lang);
       {t.path.items.map((item, i) => {
         const joined = item.group && t.path.items[i + 1]?.group === item.group;
         return (
-          <li class:list={["item", { joined }]} data-reveal>
+          <li class:list={["item", { joined }]}>
             <p class="period muted">{item.period}</p>
             <div>
               <h3>{item.org}</h3>
@@ -28,10 +28,12 @@ const t = getDict(lang);
   </div>
 </section>
 <style>
-  .tl { list-style: none; margin-top: 3rem; border-left: 1px solid var(--rule); }
-  .item { position: relative; display: grid; gap: 0.25rem 2rem; padding: 0 0 2.25rem 2rem; }
+  .tl { position: relative; list-style: none; margin-top: 3rem; }
+  /* A linha do tempo cresce com a rolagem (--tl de 0 a 1); sem JS fica inteira. */
+  .tl::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 1px; background: linear-gradient(var(--accent), var(--rule) 40%); transform-origin: top; scale: 1 var(--tl, 1); }
+  .item { position: relative; z-index: 0; display: grid; gap: 0.25rem 2rem; padding: 0 0 2.25rem 2rem; }
   @media (min-width: 900px) { .item { grid-template-columns: 11rem 1fr; } }
-  .item::before { content: ""; position: absolute; left: -0.3rem; top: 0.45rem; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); }
+  .item::before { content: ""; position: absolute; left: -0.3rem; top: 0.45rem; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); scale: var(--dot, 1); }
   .item.joined { padding-bottom: 1rem; }
   .item.joined + .item::before { background: var(--bg); border: 1.5px solid var(--accent); }
   h3 { font-size: 1.3rem; font-weight: 600; }

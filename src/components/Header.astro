@@ -30,6 +30,7 @@ const otherLang = other === "pt" ? "pt-BR" : "en";
       <ThemeToggle toDark={t.nav.toDark} toLight={t.nav.toLight} />
     </div>
   </div>
+  <span class="progress" aria-hidden="true"></span>
 </header>
 
 <style>
@@ -39,7 +40,12 @@ const otherLang = other === "pt" ? "pt-BR" : "en";
   /* No celular as seções viram uma segunda linha que rola na horizontal. */
   nav { order: 3; width: 100%; overflow-x: auto; scrollbar-width: none; }
   ul { display: flex; list-style: none; gap: 1.5rem; padding-block: 0.25rem 0.75rem; font-size: 0.95rem; color: var(--muted); white-space: nowrap; }
-  ul a:hover { color: var(--text); }
+  ul a { transition: color 0.2s ease; }
+  ul a:hover, ul a.is-active { color: var(--text); }
+  ul a.is-active { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.45em; }
+  /* Barra de progresso da leitura: só aparece com JS (o GSAP a controla). */
+  .progress { display: none; position: absolute; inset: auto 0 -1px; height: 2px; background: var(--accent); transform-origin: left; }
+  :global(.js) .progress { display: block; }
   @media (min-width: 900px) {
     .row { flex-wrap: nowrap; }
     nav { order: 0; width: auto; overflow: visible; }

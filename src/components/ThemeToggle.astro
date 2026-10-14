@@ -29,6 +29,8 @@ const { toDark, toLight } = Astro.props;
 
 <style>
   .theme { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid var(--rule); border-radius: 999px; background: transparent; cursor: pointer; }
-  .dot { width: 0.9rem; height: 0.9rem; border-radius: 50%; background: linear-gradient(90deg, var(--text) 50%, transparent 50%); border: 1.5px solid var(--text); }
+  .dot { width: 0.9rem; height: 0.9rem; border-radius: 50%; background: linear-gradient(90deg, var(--text) 50%, transparent 50%); border: 1.5px solid var(--text); transition: rotate 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  :global([data-theme="light"]) .dot { rotate: 180deg; }
+  @media (prefers-reduced-motion: reduce) { .dot { transition: none; } }
   .theme:hover { border-color: var(--muted); }
 </style>

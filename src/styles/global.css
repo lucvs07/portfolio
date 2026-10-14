@@ -19,22 +19,24 @@ p { text-wrap: pretty; }
 :focus-visible { outline: 2px solid var(--accent-text); outline-offset: 4px; border-radius: 2px; }
 
 .wrap { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 4rem); }
-.section { padding-block: clamp(4rem, 10vw, 8rem); border-top: 1px solid var(--rule); }
+.section { position: relative; padding-block: clamp(4rem, 10vw, 8rem); }
+/* A régua do topo é um traço que o GSAP desenha (--rule-x de 0 a 1); sem JS fica inteira. */
+.section::before { content: ""; position: absolute; inset: 0 0 auto; height: 1px; background: var(--rule); transform-origin: left; scale: var(--rule-x, 1) 1; }
 .num { color: var(--accent-text); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; }
 .title { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-top: 0.75rem; max-width: 16ch; }
 .muted { color: var(--muted); }
 .link { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
 .link:hover { text-decoration-thickness: 2px; }
+.link .arrow { transition: translate 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.link:hover .arrow.up-right { translate: 0.12em -0.12em; }
 
 .skip { position: absolute; left: 1rem; top: -4rem; z-index: 100; padding: 0.75rem 1rem; background: var(--accent); color: #1e1d1b; font-weight: 600; }
 .skip:focus { top: 1rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* Revelação: só esconde quando o JS rodou e o movimento é permitido. */
-@media (prefers-reduced-motion: no-preference) {
-  .js [data-reveal] { opacity: 0; translate: 0 1rem; transition: opacity 0.7s ease, translate 0.7s ease; }
-  .js [data-reveal].is-in { opacity: 1; translate: 0 0; }
-}
+/* Movimento (Motion.astro): o hero espera o GSAP; o resto é escondido pelo próprio script. */
+.motion .hero :is(.name, .lead, .index) { visibility: hidden; }
+.line { padding-bottom: 0.06em; margin-bottom: -0.06em; }
 
 /* Logo do hero (ilha React): a SVG plana aparece primeiro e some quando o 3D renderiza. */
 .logo-hero { position: absolute; inset: 0; color: var(--accent); }

@@ -7,7 +7,7 @@ const { lang } = Astro.props;
 const t = getDict(lang);
 ---
 <section id={SECTION_IDS[lang].about} class="section" aria-labelledby="about-title">
-  <div class="wrap" data-reveal>
+  <div class="wrap">
     <p class="num">01 — {t.nav.about}</p>
     <h2 id="about-title" class="title">{t.about.title}</h2>
     <p class="body">{t.about.body}</p>

@@ -195,8 +195,13 @@ Text with an underline, always.
 ### Hero logo (signature)
 - The owner's ambigram logo, flat SVG in marigold first, cross-fading to the 3D render (flat out over 0.6s, canvas in over 0.8s) once it is ready. It spins in to face the visitor, follows the pointer slightly, floats gently, and flips 180 degrees across the first viewport of scroll so `b` becomes `q`. Reduced motion holds a fixed pose; no WebGL or Save-Data keeps the flat SVG. Always decorative (`aria-hidden`); the name is the h1.
 
-### Reveal
-- Blocks and rows fade in and rise 1rem over 0.7s once, when they enter the viewport. Applied only when JavaScript ran and motion is allowed, so content is never hidden without it.
+### Motion (GSAP, `src/components/Motion.astro`)
+- **Focal moment:** the hero name rises out of per-line masks, the orange period lands last, the lead un-blurs, and the bottom rule draws left to right, timed with the 3D logo's spin-in.
+- **Editorial rules:** each section's top rule draws in (`--rule-x` 0→1), the section number types itself, and the title rises line by line. Project rows draw their bottom rule the same way.
+- **Per section:** About lights up word by word with scroll (scrub); the featured cover opens through a clip-path mask with slight drift; Stack lists cascade column by column; the Path line grows with scroll and each dot pops as it is reached; the Contact title rises letter by letter and its period lands like the hero's; the footer logo turns 180° back from q to b.
+- **Feedback:** an orange reading-progress bar under the header, the active section underlined in the nav, arrows nudge on link hover, project rows shift on hover, and the theme dot turns 180° on toggle.
+- **Ease:** `expo.out` for arrivals, `power3.inOut` for drawn lines, `back.out` only for the two landing periods and the timeline dots.
+- **Safety:** content is visible by default. `<html class="motion">` (set only when motion is allowed) hides the hero until the script runs; a 3 s fallback removes it if the script never arrives. With reduced motion nothing moves; the progress bar and the active section still update.
 
 ## Do's and Don'ts
 

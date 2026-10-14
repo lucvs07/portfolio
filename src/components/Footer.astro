@@ -11,5 +11,6 @@ const t = getDict(Astro.props.lang);
 </footer>
 <style>
   .foot { display: flex; align-items: center; gap: 1rem; padding-block: 2rem; border-top: 1px solid var(--rule); font-size: 0.95rem; }
-  .mark { width: 1rem; color: var(--accent); }
+  /* :global porque o <svg> é renderizado pelo Logo.astro e não recebe o escopo deste arquivo. */
+  .foot :global(.mark) { flex: none; width: auto; height: 1.5rem; color: var(--accent); }
 </style>

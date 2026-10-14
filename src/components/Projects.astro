@@ -28,7 +28,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
     {projects.length === 0 && <p class="muted empty"><a class="link" href="https://github.com/lucvs07" {...ext}>{t.projects.empty}<Arrow /></a></p>}
 
     {featured && (
-      <article class="feat" data-reveal>
+      <article class="feat">
         <div class="feat-copy">
           <h3>{featured.name}</h3>
           {featured.description[lang] && <p class="desc">{featured.description[lang]}</p>}
@@ -44,7 +44,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
 
     <ol class="list">
       {rest.map((p, i) => (
-        <li class="row" data-reveal>
+        <li class="row">
           <span class="i">{String(i + 2).padStart(2, "0")}</span>
           <div>
             <h3>{p.name}</h3>
@@ -72,7 +72,11 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
   .tech.small { margin-top: 0.6rem; }
   .links { display: flex; gap: 1.25rem; margin-top: 1.25rem; }
   .list { list-style: none; margin-top: 2rem; }
-  .row { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.5rem 1rem; padding-block: 1.5rem; border-bottom: 1px solid var(--rule); }
+  .row { position: relative; display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.5rem 1rem; padding-block: 1.5rem; }
+  .row::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: var(--rule); transform-origin: left; scale: var(--rule-x, 1) 1; }
+  .row h3, .i { transition: translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease; }
+  .row:hover h3 { translate: 0.4rem 0; }
+  .row:hover .i { color: var(--accent-text); }
   @media (min-width: 900px) { .row { grid-template-columns: 3rem 1fr auto; align-items: baseline; } }
   .row .links { grid-column: 2; margin-top: 0; }
   @media (min-width: 900px) { .row .links { grid-column: 3; } }
