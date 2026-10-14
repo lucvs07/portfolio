@@ -11,7 +11,7 @@ export interface Project {
   tech: string[];
   repoUrl: string;
   demoUrl: string | null;
-  cover: string | null; // URL remota resolvida
+  covers: string[]; // URLs candidatas a capa, em ordem de preferência
   coverFile: string | null; // nome do arquivo em src/assets/projects
   featured: boolean;
   pushedAt: string;

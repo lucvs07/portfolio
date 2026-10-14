@@ -8,8 +8,9 @@ const t = getDict("pt");
 const en = getDict("en");
 ---
 <Base lang="pt" title={`${t.notFound.title} · Lucas Grecco`} description={t.notFound.text}>
-  <Header lang="pt" />
-  <main class="wrap nf">
+  <a slot="skip" class="skip" href="#main">{t.nav.skip}</a>
+  <Header lang="pt" onHome={false} />
+  <main id="main" tabindex="-1" class="wrap nf">
     <h1>{t.notFound.title}</h1>
     <p class="muted">{t.notFound.text} <span lang="en">{en.notFound.text}</span></p>
     <a class="link" href={getRelativeLocaleUrl("pt", "")}>{t.notFound.home}</a>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T20:20:06.845Z",
+  "generatedAt": "2026-10-14T20:42:33.140Z",
   "projects": [
     {
       "repo": "lucvs07/dot-study",
@@ -16,7 +16,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/dot-study",
       "demoUrl": "https://dot-study-cp5-lucas-greccos-projects.vercel.app",
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2026-10-06T22:55:42Z"
@@ -34,7 +34,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/Fiap-Skill-Match",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2026-05-05T12:57:18Z"
@@ -54,7 +54,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/ache-vision",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2025-11-08T19:12:58Z"
@@ -71,7 +71,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/ache-capture",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2025-11-06T21:28:49Z"
@@ -90,7 +90,17 @@
       ],
       "repoUrl": "https://github.com/An4lu/DeereGO",
       "demoUrl": "https://deerego.vercel.app",
-      "cover": "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/proposta.png",
+      "covers": [
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/proposta.png",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/arquitetura.png",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/diagrama.png",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/banco-de-dados.jpg",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/print-login.jpeg",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/rebocador-mobile-home.png",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/print-dashboard-admin.jpeg",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/carros-adm.jpeg",
+        "https://raw.githubusercontent.com/An4lu/DeereGO/main/src/assets/ajustes-adm.jpeg"
+      ],
       "coverFile": "an4lu--deerego.png",
       "featured": true,
       "pushedAt": "2025-07-08T03:28:27Z"
@@ -109,7 +119,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/Api-Hunger",
       "demoUrl": "https://front-hunger.vercel.app",
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2024-12-03T01:11:02Z"
@@ -128,7 +138,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/Front-Hunger",
       "demoUrl": "https://front-hunger.vercel.app",
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2024-11-05T01:28:57Z"
@@ -146,7 +156,12 @@
       ],
       "repoUrl": "https://github.com/lucvs07/deereGO-ESP",
       "demoUrl": null,
-      "cover": "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/proposta.png",
+      "covers": [
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/proposta.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/arquitetura.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/diagrama.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/banco-de-dados.jpg"
+      ],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2024-10-26T02:37:42Z"
@@ -165,7 +180,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/pokedex",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2024-08-12T18:03:52Z"
@@ -185,7 +200,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/OneWay",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2023-12-21T03:06:26Z"
@@ -205,7 +220,7 @@
       ],
       "repoUrl": "https://github.com/lucvs07/CARI",
       "demoUrl": null,
-      "cover": null,
+      "covers": [],
       "coverFile": null,
       "featured": true,
       "pushedAt": "2023-12-20T00:52:24Z"

@@ -11,7 +11,7 @@ test("normalizeTech maps aliases, drops control topics and duplicates", () => {
 });
 
 const p = (repo: string, featured: boolean, pushedAt: string): Project => ({
-  repo, name: repo, description: { en: "", pt: "" }, tech: [], repoUrl: "", demoUrl: null, cover: null, coverFile: null, featured, pushedAt,
+  repo, name: repo, description: { en: "", pt: "" }, tech: [], repoUrl: "", demoUrl: null, covers: [], coverFile: null, featured, pushedAt,
 });
 
 test("orderProjects puts featured first, then most recently pushed", () => {

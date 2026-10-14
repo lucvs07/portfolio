@@ -45,3 +45,30 @@ test("resolveAsset turns README paths into raw URLs", () => {
   assert.equal(resolveAsset("//cdn.example.com/x.png", ref), "https://cdn.example.com/x.png");
   assert.equal(resolveAsset("data:image/png;base64,AAA", ref), null);
 });
+
+import { coverCandidates } from "../src/lib/github/readme.ts";
+
+test("coverCandidates skips unknown badges, data URIs and images in code blocks, in order", () => {
+  const md = [
+    "![build](https://travis-ci.com/o/r.svg?branch=main)",
+    "[![deploy](https://vercel.com/button)](https://vercel.com/new)",
+    "![skills](https://skillicons.dev/icons?i=js,ts)",
+    "![logo](data:image/png;base64,AAA)",
+    "```md",
+    "![example](docs/example.png)",
+    "```",
+    "![shot](docs/home.png)",
+    "![second](docs/other.jpg)",
+  ].join("\n");
+  assert.deepEqual(coverCandidates(md, ref), [
+    "https://raw.githubusercontent.com/lucvs07/CARI/main/docs/home.png",
+    "https://raw.githubusercontent.com/lucvs07/CARI/main/docs/other.jpg",
+  ]);
+});
+
+test("coverCandidates puts the alt 'cover' image first", () => {
+  assert.deepEqual(coverCandidates("![a](a.png) ![cover](b.png)", ref), [
+    "https://raw.githubusercontent.com/lucvs07/CARI/main/b.png",
+    "https://raw.githubusercontent.com/lucvs07/CARI/main/a.png",
+  ]);
+});

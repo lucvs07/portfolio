@@ -43,11 +43,11 @@ test("fields come from About, README and topics", async () => {
   const [alpha, beta, ext] = await buildProjects(fakeApi(), config);
   assert.equal(alpha.featured, true);
   assert.deepEqual(alpha.description, { en: "Alpha app", pt: "App Alpha em português." });
-  assert.equal(alpha.cover, "https://raw.githubusercontent.com/lucvs07/Alpha/main/docs/shot.png");
+  assert.deepEqual(alpha.covers, ["https://raw.githubusercontent.com/lucvs07/Alpha/main/docs/shot.png"]);
   assert.equal(alpha.demoUrl, "https://alpha.app");
   assert.deepEqual(alpha.tech, ["TypeScript", "CSS", "React"]);
   assert.deepEqual(beta.description, { en: "Beta tool", pt: "Beta tool" });
-  assert.equal(beta.cover, null);
+  assert.deepEqual(beta.covers, []);
   assert.equal(ext.name, "Ext Project");
   assert.deepEqual(ext.description, { en: "Ext EN", pt: "Ext PT" });
   assert.equal(ext.demoUrl, "https://ext.app");

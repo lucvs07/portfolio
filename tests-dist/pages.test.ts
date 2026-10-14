@@ -72,3 +72,13 @@ test("link previews have title, description, image and canonical", () => {
     assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
   }
 });
+
+test("on the 404 page the section links go back to the home page", () => {
+  assert.match(page("404.html"), /href="\/portfolio\/?#projetos"/);
+  assert.doesNotMatch(page("404.html"), /href="#projetos"/);
+});
+
+test("the language switch's accessible name contains its visible text (WCAG 2.5.3)", () => {
+  assert.match(page("index.html"), /aria-label="EN[^"]*"[^>]*>EN</);
+  assert.match(page("en/index.html"), /aria-label="PT[^"]*"[^>]*>PT</);
+});

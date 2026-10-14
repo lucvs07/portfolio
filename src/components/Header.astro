@@ -5,8 +5,9 @@ import type { Lang } from "../i18n/types";
 import { SECTION_IDS } from "./sections";
 import ThemeToggle from "./ThemeToggle.astro";
 
-interface Props { lang: Lang }
-const { lang } = Astro.props;
+// onHome: falso no 404, onde as âncoras precisam voltar para a página inicial.
+interface Props { lang: Lang; onHome?: boolean }
+const { lang, onHome = true } = Astro.props;
 const t = getDict(lang);
 const ids = SECTION_IDS[lang];
 const other: Lang = lang === "pt" ? "en" : "pt";
@@ -21,11 +22,11 @@ const otherLang = other === "pt" ? "pt-BR" : "en";
     <a class="brand" href={home} aria-label={t.nav.home}>Lucas Grecco</a>
     <nav aria-label={t.nav.label}>
       <ul>
-        {items.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+        {items.map(([id, label]) => <li><a href={onHome ? `#${id}` : `${home}#${id}`}>{label}</a></li>)}
       </ul>
     </nav>
     <div class="tools">
-      <a class="lang" href={getRelativeLocaleUrl(other, "")} lang={otherLang} hreflang={otherLang} aria-label={t.nav.switchLangLabel}>{t.nav.switchLang}</a>
+      <a class="lang" href={getRelativeLocaleUrl(other, "")} lang={otherLang} hreflang={otherLang} aria-label={`${t.nav.switchLang}, ${t.nav.switchLangLabel}`}>{t.nav.switchLang}</a>
       <ThemeToggle toDark={t.nav.toDark} toLight={t.nav.toLight} />
     </div>
   </div>

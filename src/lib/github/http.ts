@@ -14,7 +14,7 @@ export function createHttpApi(token?: string): GitHubApi {
   const headers: Record<string, string> = { Accept: "application/vnd.github+json", "User-Agent": "portfolio-build" };
   if (token) headers.Authorization = `Bearer ${token}`;
   const get = async <T>(path: string, accept?: string): Promise<T> => {
-    const res = await fetch(`https://api.github.com${path}`, { headers: accept ? { ...headers, Accept: accept } : headers });
+    const res = await fetch(`https://api.github.com${path}`, { headers: accept ? { ...headers, Accept: accept } : headers, signal: AbortSignal.timeout(20_000) });
     if (!res.ok) throw new HttpError(res.status, `GET ${path} -> ${res.status}`);
     return (accept?.includes("raw") ? await res.text() : await res.json()) as T;
   };
