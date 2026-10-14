@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { themeCss } from "../lib/theme";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
 import { withBase } from "../lib/url";
 
 interface Props {
@@ -30,12 +31,16 @@ const { lang, title, description } = Astro.props;
     <meta name="theme-color" content="#F6F1EB" media="(prefers-color-scheme: light)" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="alternate" hreflang="pt-BR" href={getAbsoluteLocaleUrl("pt", "")} />
+    <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl("en", "")} />
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl("pt", "")} />
     <link rel="icon" type="image/svg+xml" href={withBase("logo.svg")} />
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=chillax@400,500,600,700&display=swap" />
   </head>
   <body>
+    <slot name="skip" />
     <slot />
   </body>
 </html>

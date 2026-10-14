@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildProjects } from "../src/lib/github/build.ts";
+import { HttpError } from "../src/lib/github/types.ts";
 import type { GitHubApi, ProjectsConfig, RepoInfo } from "../src/lib/github/types.ts";
 
 const repo = (fullName: string, extra: Partial<RepoInfo> = {}): RepoInfo => ({
@@ -52,11 +53,19 @@ test("fields come from About, README and topics", async () => {
   assert.equal(ext.demoUrl, "https://ext.app");
 });
 
-test("a repo that fails to load is skipped, not fatal", async () => {
+test("a transient failure on any repo aborts the run, so a degraded result never replaces the snapshot", async () => {
   const api = fakeApi();
-  const broken: GitHubApi = { ...api, getReadme: async (n) => { if (n === "lucvs07/Beta") throw new Error("500"); return api.getReadme(n); } };
-  const out = await buildProjects(broken, config);
-  assert.ok(out.some((p) => p.repo === "lucvs07/Beta"), "README failure only drops the README-derived fields");
+  const flaky: GitHubApi = { ...api, getLanguages: async () => { throw new HttpError(403, "rate limited"); } };
+  await assert.rejects(() => buildProjects(flaky, config), /rate limited/);
+  const flakyExtra: GitHubApi = { ...api, getRepo: async () => { throw new HttpError(500, "server error"); } };
+  await assert.rejects(() => buildProjects(flakyExtra, config), /server error/);
+});
+
+test("an extra repo that no longer exists (404) is skipped", async () => {
+  const api = fakeApi();
+  const gone: GitHubApi = { ...api, getRepo: async () => { throw new HttpError(404, "not found"); } };
+  const out = await buildProjects(gone, config);
+  assert.deepEqual(out.map((p) => p.repo), ["lucvs07/Alpha", "lucvs07/Beta"]);
 });
 
 test("listing failure propagates so the caller can fall back to the snapshot", async () => {

@@ -1,4 +1,4 @@
-import type { GitHubApi, RepoInfo } from "./types.ts";
+import { HttpError, isNotFound, type GitHubApi, type RepoInfo } from "./types.ts";
 
 interface RawRepo {
   full_name: string; name: string; description: string | null; html_url: string; homepage: string | null;
@@ -15,7 +15,7 @@ export function createHttpApi(token?: string): GitHubApi {
   if (token) headers.Authorization = `Bearer ${token}`;
   const get = async <T>(path: string, accept?: string): Promise<T> => {
     const res = await fetch(`https://api.github.com${path}`, { headers: accept ? { ...headers, Accept: accept } : headers });
-    if (!res.ok) throw new Error(`GET ${path} -> ${res.status}`);
+    if (!res.ok) throw new HttpError(res.status, `GET ${path} -> ${res.status}`);
     return (accept?.includes("raw") ? await res.text() : await res.json()) as T;
   };
   return {
@@ -23,6 +23,10 @@ export function createHttpApi(token?: string): GitHubApi {
       (await get<{ items: RawRepo[] }>(`/search/repositories?q=${encodeURIComponent(`user:${owner} topic:${topic}`)}&per_page=100`)).items.map(toInfo),
     getRepo: async (n) => toInfo(await get<RawRepo>(`/repos/${n}`)),
     getLanguages: async (n) => Object.keys(await get<Record<string, number>>(`/repos/${n}/languages`)),
-    getReadme: async (n) => get<string>(`/repos/${n}/readme`, "application/vnd.github.raw+json").catch(() => null),
+    getReadme: async (n) =>
+      get<string>(`/repos/${n}/readme`, "application/vnd.github.raw+json").catch((err: unknown) => {
+        if (isNotFound(err)) return null; // repo sem README
+        throw err;
+      }),
   };
 }

@@ -1,0 +1,29 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="copy">
+    <h1 id="hero-title" class="name">Lucas<br />Grecco<span class="dot">.</span></h1>
+    <p class="lead"><strong>{t.hero.role}</strong> {t.hero.rest}</p>
+  </div>
+  <div class="stage"><slot name="logo" /></div>
+  <a class="index" href={`#${SECTION_IDS[lang].about}`}><span><b>01</b> — {t.nav.about}</span><span aria-hidden="true">{t.hero.scroll} ↓</span></a>
+</section>
+
+<style>
+  .hero { position: relative; min-height: calc(100svh - 4rem); display: grid; grid-template-rows: auto minmax(40svh, 1fr) auto; padding-block: 3rem 1.5rem; }
+  @media (min-width: 900px) { .hero { grid-template-columns: 1.1fr 1fr; grid-template-rows: 1fr auto; align-items: center; } }
+  .name { font-size: clamp(4.25rem, 13vw, 11rem); line-height: 0.86; letter-spacing: -0.02em; }
+  .dot { color: var(--accent); }
+  .lead { margin-top: 2rem; max-width: 30rem; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.45; color: var(--muted); }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .stage { position: relative; min-height: 40svh; }
+  @media (min-width: 900px) { .stage { min-height: 70svh; } }
+  .index { grid-column: 1 / -1; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: 0.95rem; color: var(--muted); }
+  .index b { color: var(--accent-text); font-weight: 600; }
+</style>

@@ -18,3 +18,7 @@ test("orderProjects puts featured first, then most recently pushed", () => {
   const out = orderProjects([p("a", false, "2024-01-01"), p("b", true, "2020-01-01"), p("c", false, "2025-01-01")]);
   assert.deepEqual(out.map((x) => x.repo), ["b", "c", "a"]);
 });
+
+test("normalizeTech drops build and scripting noise reported by GitHub languages", () => {
+  assert.deepEqual(normalizeTech(["TypeScript", "Dockerfile", "Shell", "Makefile", "Batchfile", "Procfile", "CSS"]), ["TypeScript", "CSS"]);
+});

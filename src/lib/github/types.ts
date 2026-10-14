@@ -52,3 +52,14 @@ export interface ProjectsConfig {
   extraRepos: string[];
   overrides: Record<string, ProjectOverride>;
 }
+
+// Erro de HTTP com o status, para distinguir "não existe" (404) de falhas passageiras.
+export class HttpError extends Error {
+  status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
+export const isNotFound = (err: unknown): boolean => err instanceof HttpError && err.status === 404;

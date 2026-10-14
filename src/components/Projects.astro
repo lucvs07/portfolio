@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import snapshot from "../data/projects.snapshot.json";
+import { fmt, getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import type { Project } from "../lib/github/types";
+import { SECTION_IDS } from "./sections";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+const projects = (snapshot as { projects: Project[] }).projects;
+const covers = import.meta.glob<{ default: ImageMetadata }>("../assets/projects/*.{png,jpg,webp,gif,avif}", { eager: true });
+const coverFor = (p: Project) => (p.coverFile ? covers[`../assets/projects/${p.coverFile}`]?.default : undefined);
+const [featured, ...rest] = projects;
+const featuredCover = featured ? coverFor(featured) : undefined;
+const ext = { target: "_blank", rel: "noopener noreferrer" };
+---
+<section id={SECTION_IDS[lang].projects} class="section" aria-labelledby="projects-title">
+  <div class="wrap">
+    <p class="num">02 — {t.nav.projects}</p>
+    <h2 id="projects-title" class="title">{t.projects.title}</h2>
+
+    {projects.length === 0 && <p class="muted empty"><a class="link" href="https://github.com/lucvs07" {...ext}>{t.projects.empty}</a></p>}
+
+    {featured && (
+      <article class="feat" data-reveal>
+        <div class="feat-copy">
+          <h3>{featured.name}</h3>
+          {featured.description[lang] && <p class="desc">{featured.description[lang]}</p>}
+          <ul class="tech" aria-label={t.projects.techs}>{featured.tech.map((x) => <li>{x}</li>)}</ul>
+          <p class="links">
+            <a class="link" href={featured.repoUrl} {...ext} aria-label={fmt(t.projects.codeLabel, { name: featured.name })}>{t.projects.code} ↗</a>
+            {featured.demoUrl && <a class="link" href={featured.demoUrl} {...ext} aria-label={fmt(t.projects.demoLabel, { name: featured.name })}>{t.projects.demo} ↗</a>}
+          </p>
+        </div>
+        {featuredCover && <Image class="cover" src={featuredCover} alt="" widths={[480, 800, 1200]} sizes="(min-width: 900px) 40vw, 100vw" />}
+      </article>
+    )}
+
+    <ol class="list">
+      {rest.map((p, i) => (
+        <li class="row" data-reveal>
+          <span class="i">{String(i + 2).padStart(2, "0")}</span>
+          <div>
+            <h3>{p.name}</h3>
+            {p.description[lang] && <p class="muted">{p.description[lang]}</p>}
+            <ul class="tech small" aria-label={t.projects.techs}>{p.tech.map((x) => <li>{x}</li>)}</ul>
+          </div>
+          <p class="links">
+            <a class="link" href={p.repoUrl} {...ext} aria-label={fmt(t.projects.codeLabel, { name: p.name })}>{t.projects.code} ↗</a>
+            {p.demoUrl && <a class="link" href={p.demoUrl} {...ext} aria-label={fmt(t.projects.demoLabel, { name: p.name })}>{t.projects.demo} ↗</a>}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .feat { display: grid; gap: 2rem; margin-top: 3rem; padding: clamp(1.25rem, 3vw, 2.5rem); background: var(--surface); border-radius: 1rem; }
+  @media (min-width: 900px) { .feat { grid-template-columns: 1.1fr 1fr; align-items: center; } }
+  .feat h3 { font-size: clamp(2rem, 4vw, 3rem); }
+  .desc { margin-top: 1rem; max-width: 36rem; }
+  .cover { width: 100%; height: auto; border-radius: 0.75rem; }
+  .tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; list-style: none; }
+  .tech li { font-size: 0.9rem; padding: 0.2rem 0.7rem; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); }
+  .tech.small { margin-top: 0.6rem; }
+  .links { display: flex; gap: 1.25rem; margin-top: 1.25rem; }
+  .list { list-style: none; margin-top: 2rem; }
+  .row { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.5rem 1rem; padding-block: 1.5rem; border-bottom: 1px solid var(--rule); }
+  @media (min-width: 900px) { .row { grid-template-columns: 3rem 1fr auto; align-items: baseline; } }
+  .row .links { grid-column: 2; margin-top: 0; }
+  @media (min-width: 900px) { .row .links { grid-column: 3; } }
+  .row h3 { font-size: 1.4rem; font-weight: 600; }
+  .i { color: var(--muted); font-size: 0.95rem; }
+  .empty { margin-top: 2rem; }
+</style>

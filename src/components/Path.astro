@@ -1,0 +1,40 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section id={SECTION_IDS[lang].path} class="section" aria-labelledby="path-title">
+  <div class="wrap">
+    <p class="num">04 — {t.nav.path}</p>
+    <h2 id="path-title" class="title">{t.path.title}</h2>
+    <ol class="tl">
+      {t.path.items.map((item, i) => {
+        const joined = item.group && t.path.items[i + 1]?.group === item.group;
+        return (
+          <li class:list={["item", { joined }]} data-reveal>
+            <p class="period muted">{item.period}</p>
+            <div>
+              <h3>{item.org}</h3>
+              <p>{item.role}</p>
+              {item.note && <p class="muted note">{item.note}</p>}
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>
+<style>
+  .tl { list-style: none; margin-top: 3rem; border-left: 1px solid var(--rule); }
+  .item { position: relative; display: grid; gap: 0.25rem 2rem; padding: 0 0 2.25rem 2rem; }
+  @media (min-width: 900px) { .item { grid-template-columns: 11rem 1fr; } }
+  .item::before { content: ""; position: absolute; left: -0.3rem; top: 0.45rem; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); }
+  .item.joined { padding-bottom: 1rem; }
+  .item.joined + .item::before { background: var(--bg); border: 1.5px solid var(--accent); }
+  h3 { font-size: 1.3rem; font-weight: 600; }
+  .period { font-size: 0.95rem; }
+  .note { margin-top: 0.25rem; font-size: 1rem; }
+</style>

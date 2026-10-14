@@ -15,10 +15,13 @@ const label = (raw: string) => {
   return words.charAt(0).toUpperCase() + words.slice(1);
 };
 
+// Linguagens que o GitHub reporta mas não dizem nada sobre a stack do projeto.
+const NOISE = new Set(["dockerfile", "shell", "makefile", "batchfile", "procfile", "powershell", "cmake"]);
+
 export function normalizeTech(names: string[], ignore: string[] = ["portfolio", "featured"]): string[] {
   const out: string[] = [];
   for (const n of names) {
-    if (ignore.includes(n.toLowerCase())) continue;
+    if (ignore.includes(n.toLowerCase()) || NOISE.has(n.toLowerCase())) continue;
     const l = label(n);
     if (!out.includes(l)) out.push(l);
   }

@@ -1,0 +1,20 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section id={SECTION_IDS[lang].about} class="section" aria-labelledby="about-title">
+  <div class="wrap" data-reveal>
+    <p class="num">01 — {t.nav.about}</p>
+    <h2 id="about-title" class="title">{t.about.title}</h2>
+    <p class="body">{t.about.body}</p>
+    <p class="langs muted">{t.about.languages}</p>
+  </div>
+</section>
+<style>
+  .body { margin-top: 2rem; max-width: 42rem; font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.6; }
+  .langs { margin-top: 1.5rem; }
+</style>
