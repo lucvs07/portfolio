@@ -1,0 +1,28 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section id={SECTION_IDS[lang].stack} class="section" aria-labelledby="stack-title">
+  <div class="wrap">
+    <p class="num">03 — {t.nav.stack}</p>
+    <h2 id="stack-title" class="title">{t.stack.title}</h2>
+    <div class="cols">
+      {t.stack.groups.map((g) => (
+        <div>
+          <h3>{g.title}</h3>
+          <ul>{g.items.map((x) => <li>{x}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .cols { display: grid; gap: 2.5rem; margin-top: 3rem; }
+  @media (min-width: 700px) { .cols { grid-template-columns: repeat(3, 1fr); } }
+  h3 { font-size: 0.95rem; font-weight: 500; color: var(--muted); margin-bottom: 1rem; }
+  ul { list-style: none; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.6; font-weight: 500; }
+</style>

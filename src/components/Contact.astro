@@ -1,0 +1,25 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import Arrow from "./Arrow.astro";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section id={SECTION_IDS[lang].contact} class="section" aria-labelledby="contact-title">
+  <div class="wrap">
+    <p class="num">05 — {t.nav.contact}</p>
+    <h2 id="contact-title" class="big" aria-label={t.contact.title}><span class="txt">{t.contact.title.replace(/\.$/, "")}</span><span class="dot">.</span></h2>
+    <ul class="links">
+      {t.contact.links.map((l) => (
+        <li><a class="link" href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${l.name} (${t.contact.opens})`}>{l.name}<Arrow /></a></li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .big { font-size: clamp(2.9rem, 13vw, 8rem); line-height: 0.9; margin-top: 1rem; }
+  .dot { display: inline-block; color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin-top: 3rem; list-style: none; font-size: 1.25rem; }
+</style>

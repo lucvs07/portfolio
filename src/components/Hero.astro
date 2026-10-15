@@ -1,0 +1,33 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import Arrow from "./Arrow.astro";
+import { SECTION_IDS } from "./sections";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="copy">
+    <h1 id="hero-title" class="name"><span class="ln"><span>Lucas</span></span> <span class="ln"><span>Grecco<span class="dot">.</span></span></span></h1>
+    <p class="lead"><strong>{t.hero.role}</strong> {t.hero.rest}</p>
+  </div>
+  <div class="stage"><slot name="logo" /></div>
+  <a class="index" href={`#${SECTION_IDS[lang].about}`}><span><b>01</b> — {t.nav.about}</span><span aria-hidden="true">{t.hero.scroll}<Arrow dir="down" /></span></a>
+</section>
+
+<style>
+  .hero { position: relative; min-height: calc(100svh - 4rem); display: grid; grid-template-rows: auto minmax(40svh, 1fr) auto; padding-block: 3rem 1.5rem; }
+  @media (min-width: 900px) { .hero { grid-template-columns: 1.1fr 1fr; grid-template-rows: 1fr auto; align-items: center; } }
+  .name { font-size: clamp(3.9rem, 13vw, 11rem); line-height: 0.86; letter-spacing: -0.02em; }
+  /* Cada linha do nome é uma máscara: o GSAP faz o texto subir de dentro dela. */
+  .ln { display: block; overflow: clip; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+  .ln > span { display: block; white-space: nowrap; }
+  .dot { display: inline-block; color: var(--accent); }
+  .lead { margin-top: 2rem; max-width: 30rem; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.45; color: var(--muted); }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .stage { position: relative; min-height: 40svh; }
+  @media (min-width: 900px) { .stage { min-height: 70svh; } }
+  .index { grid-column: 1 / -1; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: 0.95rem; color: var(--muted); }
+  .index b { color: var(--accent-text); font-weight: 600; }
+</style>

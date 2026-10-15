@@ -1,0 +1,8 @@
+---
+import { LOGO_PATHS } from "./logoPaths";
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<svg class={cls} viewBox="0 0 49 76" fill="currentColor" aria-hidden="true">
+  {LOGO_PATHS.map((d) => <path d={d} />)}
+</svg>

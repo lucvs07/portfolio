@@ -1,0 +1,57 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import { SECTION_IDS } from "./sections";
+import ThemeToggle from "./ThemeToggle.astro";
+
+// onHome: falso no 404, onde as âncoras precisam voltar para a página inicial.
+interface Props { lang: Lang; onHome?: boolean }
+const { lang, onHome = true } = Astro.props;
+const t = getDict(lang);
+const ids = SECTION_IDS[lang];
+const other: Lang = lang === "pt" ? "en" : "pt";
+const home = getRelativeLocaleUrl(lang, "");
+const items = [
+  [ids.about, t.nav.about], [ids.projects, t.nav.projects], [ids.stack, t.nav.stack], [ids.path, t.nav.path], [ids.contact, t.nav.contact],
+] as const;
+const otherLang = other === "pt" ? "pt-BR" : "en";
+---
+<header class="bar">
+  <div class="wrap row">
+    <a class="brand" href={home} aria-label={t.nav.home}>Lucas Grecco</a>
+    <nav aria-label={t.nav.label}>
+      <ul>
+        {items.map(([id, label]) => <li><a href={onHome ? `#${id}` : `${home}#${id}`}>{label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="lang" href={getRelativeLocaleUrl(other, "")} lang={otherLang} hreflang={otherLang} aria-label={`${t.nav.switchLang}, ${t.nav.switchLangLabel}`}>{t.nav.switchLang}</a>
+      <ThemeToggle toDark={t.nav.toDark} toLight={t.nav.toLight} />
+    </div>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<style>
+  .bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); border-bottom: 1px solid var(--rule); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1rem; min-height: 4rem; }
+  .brand { font-weight: 600; }
+  /* No celular as seções viram uma segunda linha que rola na horizontal. */
+  nav { order: 3; width: 100%; overflow-x: auto; scrollbar-width: none; }
+  ul { display: flex; list-style: none; gap: 1.5rem; padding-block: 0.25rem 0.75rem; font-size: 0.95rem; color: var(--muted); white-space: nowrap; }
+  ul a { transition: color 0.2s ease; }
+  ul a:hover, ul a.is-active { color: var(--text); }
+  ul a.is-active { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.45em; }
+  /* Barra de progresso da leitura: só aparece com JS (o GSAP a controla). */
+  .progress { display: none; position: absolute; inset: auto 0 -1px; height: 2px; background: var(--accent); transform-origin: left; }
+  :global(.js) .progress { display: block; }
+  @media (min-width: 900px) {
+    .row { flex-wrap: nowrap; }
+    nav { order: 0; width: auto; overflow: visible; }
+    ul { gap: 2rem; padding-block: 0; }
+  }
+  .tools { display: flex; align-items: center; gap: 0.75rem; }
+  .lang { font-weight: 600; font-size: 0.95rem; padding: 0.4rem 0.6rem; border: 1px solid var(--rule); border-radius: 999px; }
+  .lang:hover { border-color: var(--muted); }
+</style>

@@ -1,0 +1,23 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { getDict } from "../i18n/index";
+const t = getDict("pt");
+const en = getDict("en");
+---
+<Base lang="pt" title={`${t.notFound.title} · Lucas Grecco`} description={t.notFound.text}>
+  <a slot="skip" class="skip" href="#main">{t.nav.skip}</a>
+  <Header lang="pt" onHome={false} />
+  <main id="main" tabindex="-1" class="wrap nf">
+    <h1>{t.notFound.title}</h1>
+    <p class="muted">{t.notFound.text} <span lang="en">{en.notFound.text}</span></p>
+    <a class="link" href={getRelativeLocaleUrl("pt", "")}>{t.notFound.home}</a>
+  </main>
+  <Footer lang="pt" />
+</Base>
+<style>
+  .nf { min-height: 60svh; display: grid; align-content: center; gap: 1.5rem; padding-block: 6rem; }
+  h1 { font-size: clamp(3rem, 9vw, 7rem); }
+</style>

@@ -1,0 +1,16 @@
+---
+import { getDict } from "../i18n/index";
+import type { Lang } from "../i18n/types";
+import Logo from "./Logo.astro";
+interface Props { lang: Lang }
+const t = getDict(Astro.props.lang);
+---
+<footer class="wrap foot">
+  <Logo class="mark" />
+  <p class="muted">© {new Date().getFullYear()} Lucas Grecco. {t.footer.rights}</p>
+</footer>
+<style>
+  .foot { display: flex; align-items: center; gap: 1rem; padding-block: 2rem; border-top: 1px solid var(--rule); font-size: 0.95rem; }
+  /* :global porque o <svg> é renderizado pelo Logo.astro e não recebe o escopo deste arquivo. */
+  .foot :global(.mark) { flex: none; width: auto; height: 1.5rem; color: var(--accent); }
+</style>
