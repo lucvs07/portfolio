@@ -2,8 +2,8 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 
 export default defineConfig({
-  site: "https://lucvs07.github.io",
-  base: "/portfolio",
+  // Domínio próprio (GitHub Pages + name.com): o site mora na raiz.
+  site: "https://lucasgrecco.dev",
   trailingSlash: "ignore",
   integrations: [react()],
   // Pré-empacota o runtime JSX do React no dev; sem isso o Vite às vezes serve a ilha

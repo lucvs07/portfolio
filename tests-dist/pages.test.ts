@@ -17,10 +17,10 @@ test("both pages have exactly one h1 with the owner's name", () => {
   }
 });
 
-test("every root-relative URL carries the /portfolio base", () => {
-  for (const p of ["index.html", "en/index.html"]) {
-    const bad = [...page(p).matchAll(/(?:href|src)="(\/[^"]*)"/g)].map((m) => m[1]).filter((u) => !u.startsWith("/portfolio"));
-    assert.deepEqual(bad, [], p);
+test("the site lives at the domain root: no leftover /portfolio base and no double slashes", () => {
+  for (const p of ["index.html", "en/index.html", "404.html"]) {
+    const urls = [...page(p).matchAll(/(?:href|src)="(\/[^"]*)"/g)].map((m) => m[1]);
+    assert.deepEqual(urls.filter((u) => u.startsWith("/portfolio") || u.startsWith("//")), [], p);
   }
 });
 
@@ -30,11 +30,11 @@ test("each language has the five sections with localized anchors", () => {
 });
 
 test("language switch links to the other locale and hreflang alternates exist", () => {
-  assert.match(page("index.html"), /href="\/portfolio\/en\/?"[^>]*lang="en"/);
-  assert.match(page("en/index.html"), /href="\/portfolio\/?"[^>]*lang="pt-BR"/);
+  assert.match(page("index.html"), /href="\/en\/?"[^>]*lang="en"/);
+  assert.match(page("en/index.html"), /href="\/"[^>]*lang="pt-BR"/);
   for (const p of ["index.html", "en/index.html"]) {
-    assert.match(page(p), /<link rel="alternate" hreflang="pt-BR" href="https:\/\/lucvs07\.github\.io\/portfolio\/?"/);
-    assert.match(page(p), /<link rel="alternate" hreflang="en" href="https:\/\/lucvs07\.github\.io\/portfolio\/en\/?"/);
+    assert.match(page(p), /<link rel="alternate" hreflang="pt-BR" href="https:\/\/lucasgrecco\.dev\/?"/);
+    assert.match(page(p), /<link rel="alternate" hreflang="en" href="https:\/\/lucasgrecco\.dev\/en\/?"/);
   }
 });
 
@@ -51,8 +51,8 @@ test("projects from the snapshot are rendered", () => {
   for (const proj of snapshot.projects) assert.ok(page("index.html").includes(proj.name), proj.name);
 });
 
-test("the 404 page exists and links home with the base", () => {
-  assert.match(page("404.html"), /href="\/portfolio\/?"/);
+test("the 404 page exists and links home", () => {
+  assert.match(page("404.html"), /href="\/"/);
 });
 
 test("the hero ships the flat logo in the HTML for first paint and no-JS", () => {
@@ -63,18 +63,18 @@ test("the hero ships the flat logo in the HTML for first paint and no-JS", () =>
 });
 
 test("link previews have title, description, image and canonical", () => {
-  for (const [p, url] of [["index.html", "https://lucvs07.github.io/portfolio/"], ["en/index.html", "https://lucvs07.github.io/portfolio/en/"]]) {
+  for (const [p, url] of [["index.html", "https://lucasgrecco.dev/"], ["en/index.html", "https://lucasgrecco.dev/en/"]]) {
     const html = page(p);
     assert.match(html, new RegExp(`<link rel="canonical" href="${url}"`));
     assert.match(html, /<meta property="og:title" content="[^"]+"/);
     assert.match(html, /<meta property="og:description" content="[^"]+"/);
-    assert.match(html, /<meta property="og:image" content="https:\/\/lucvs07\.github\.io\/portfolio\/og\.png"/);
+    assert.match(html, /<meta property="og:image" content="https:\/\/lucasgrecco\.dev\/og\.png"/);
     assert.match(html, /<meta name="twitter:card" content="summary_large_image"/);
   }
 });
 
 test("on the 404 page the section links go back to the home page", () => {
-  assert.match(page("404.html"), /href="\/portfolio\/?#projetos"/);
+  assert.match(page("404.html"), /href="\/#projetos"/);
   assert.doesNotMatch(page("404.html"), /href="#projetos"/);
 });
 

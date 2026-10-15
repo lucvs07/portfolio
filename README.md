@@ -2,13 +2,13 @@
 
 One-page portfolio built with [Astro](https://astro.build): PT at `/`, EN at `/en/`, dark and light themes, a 3D logo in the hero (React island with three.js), and projects pulled from GitHub at build time.
 
-Live: https://lucvs07.github.io/portfolio/
+Live: https://lucasgrecco.dev
 
 ## Develop
 
 ```bash
 npm install
-npm run dev        # http://localhost:4321/portfolio/
+npm run dev        # http://localhost:4321/
 npm run verify     # astro check, unit tests, build, tests on the built HTML
 ```
 
