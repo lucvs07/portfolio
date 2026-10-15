@@ -158,7 +158,7 @@ Anchors account for the sticky header (scroll padding 7rem); smooth scrolling is
 
 ## Elevation & Depth
 
-Flat. No box-shadows anywhere; separation is done with hairline rules and space. The only depth on the page is the hero: a radial marigold glow (26% accent mixed into transparent, fading by 70%; at 0.55 opacity in light theme) behind the 3D logo, which is lit by warm studio light (glossy physical material, clearcoat, metalness 0.55). The sticky header stays flat: the ground at 92% opacity with a bottom rule, no blur.
+Flat. No box-shadows anywhere; separation is done with hairline rules and space. The only depth on the page is the hero: a radial marigold glow (26% accent mixed into transparent, fading by 70%; at 0.55 opacity in light theme) behind the 3D logo, which is forged bronze: a dark bronze physical material (`#A8561A`, metalness 0.95, roughness 0.3) with an emissive fresnel heat on its edges that breathes slowly and rises as the cursor nears. It is lit by a contrasty studio environment, hard light strips over a near-black backdrop plus an orange back ring, so the metal reads through bright and dark reflections instead of one flat orange. The sticky header stays flat: the ground at 92% opacity with a bottom rule, no blur.
 
 ### Named Rules
 **The One Body Rule.** Only the logo has volume. Every other surface is flat paper divided by 1px lines; no shadows, no raised cards, no soft or decorative gradients beyond the hero glow.
@@ -199,6 +199,7 @@ Text with an underline, always.
 - **Focal moment:** the hero name rises out of per-line masks, the orange period lands last, the lead un-blurs, and the bottom rule draws left to right, timed with the 3D logo's spin-in.
 - **Editorial rules:** each section's top rule draws in (`--rule-x` 0→1), the section number types itself, and the title rises line by line. Project rows draw their bottom rule the same way.
 - **Per section:** About lights up word by word with scroll (scrub); the featured cover opens through a clip-path mask with slight drift; Stack lists cascade column by column; the Path line grows with scroll and each dot pops as it is reached; the Contact title rises letter by letter and its period lands like the hero's; the footer logo turns 180° back from q to b.
+- **Sparks:** moving the cursor over the hero throws sparks that arc under gravity and fade into the page background; at rest a few escape from the logo's edge. The canvas stops drawing when the hero is off screen. Physics lives in `src/lib/sparks.ts` (unit-tested).
 - **Feedback:** an orange reading-progress bar under the header, the active section underlined in the nav, arrows nudge on link hover, project rows shift on hover, and the theme dot turns 180° on toggle.
 - **Ease:** `expo.out` for arrivals, `power3.inOut` for drawn lines, `back.out` only for the two landing periods and the timeline dots.
 - **Safety:** content is visible by default. `<html class="motion">` (set only when motion is allowed) hides the hero until the script runs; a 3 s fallback removes it if the script never arrives. With reduced motion nothing moves; the progress bar and the active section still update.
