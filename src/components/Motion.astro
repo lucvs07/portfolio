@@ -34,11 +34,12 @@
   }
 
   const mm = gsap.matchMedia();
-  mm.add("(prefers-reduced-motion: no-preference)", () => {
+  mm.add("(prefers-reduced-motion: no-preference)", (ctx) => {
     // O hero tem as linhas marcadas no HTML e começa já; o resto divide texto e depende
     // da quebra de linha, então espera o Chillax.
     hero();
-    document.fonts.ready.then(() => {
+    // ctx.add: o que nasce depois do await também é desfeito se o visitante ligar "reduzir movimento".
+    document.fonts.ready.then(() => ctx.add(() => {
       sections();
       about();
       projects();
@@ -47,13 +48,14 @@
       contact();
       footer();
       ScrollTrigger.refresh();
-    });
+    }));
   });
 
   /* Hero: o nome sobe de dentro das linhas, o ponto laranja pousa por último, a régua se desenha. */
   function hero() {
     const name = $(".hero .name");
-    if (!name) return;
+    // Se o fallback do boot já mostrou o hero (script demorou), não reanima por cima.
+    if (!name || !root.classList.contains("motion")) return;
     const lines = $$(".ln > span", name);
     const dot = $(".dot", name);
     const tl = gsap.timeline({ defaults: { ease: EASE } });
@@ -71,8 +73,7 @@
       tl.fromTo(s, { "--rule-x": 0 }, { "--rule-x": 1, duration: 1.4, ease: "power3.inOut" });
       const num = $(".num", s);
       if (num) {
-        const chars = SplitText.create(num, { type: "chars" }).chars;
-        tl.from(chars, { autoAlpha: 0, duration: 0.01, stagger: 0.035 }, 0.2);
+        tl.from(num, { clipPath: "inset(0 100% 0 0)", duration: 0.5, ease: "steps(10)" }, 0.2);
       }
       const title = $(".title", s);
       if (title) {
@@ -86,14 +87,14 @@
   function about() {
     const body = $("#about-title ~ .body");
     if (!body) return;
-    const words = SplitText.create(body, { type: "words" }).words;
+    const words = SplitText.create(body, { type: "words", aria: "none" }).words;
     gsap.fromTo(words, { opacity: 0.16 }, {
       opacity: 1,
       stagger: 0.1,
       ease: "none",
       scrollTrigger: { trigger: body, start: "top 80%", end: "bottom 50%", scrub: 0.6 },
     });
-    gsap.from("#about-title ~ .langs", { autoAlpha: 0, y: 12, duration: 0.8, ease: EASE, scrollTrigger: onEnter(body, "bottom 70%") });
+    gsap.from("#about-title ~ .langs", { opacity: 0, y: 12, duration: 0.8, ease: EASE, scrollTrigger: onEnter(body, "bottom 70%") });
   }
 
   /* Projetos: o destaque abre com máscara sobre a capa; a lista entra item a item com a régua. */
@@ -103,7 +104,7 @@
       const tl = gsap.timeline({ scrollTrigger: onEnter(feat, "top 78%"), defaults: { ease: EASE } });
       const h = $("h3", feat);
       if (h) tl.from(SplitText.create(h, { type: "lines", mask: "lines" }).lines, { yPercent: 105, duration: 1.1 });
-      tl.from($$(".desc, .tech li, .links", feat), { y: 14, autoAlpha: 0, duration: 0.7, stagger: 0.04 }, 0.25);
+      tl.from($$(".desc, .tech li, .links", feat), { y: 14, opacity: 0, duration: 0.7, stagger: 0.04 }, 0.25);
       const cover = $(".cover", feat);
       if (cover) {
         tl.from(cover, { clipPath: "inset(100% 0% 0% 0% round 0.75rem)", duration: 1.4, ease: "power4.inOut" }, 0)
@@ -114,7 +115,7 @@
     for (const row of $$(".list .row")) {
       gsap.timeline({ scrollTrigger: onEnter(row, "top 90%"), defaults: { ease: EASE } })
         .fromTo(row, { "--rule-x": 0 }, { "--rule-x": 1, duration: 1, ease: "power3.inOut" })
-        .from(row.children, { y: 20, autoAlpha: 0, duration: 0.8, stagger: 0.06 }, 0.1);
+        .from(row.children, { y: 20, opacity: 0, duration: 0.8, stagger: 0.06 }, 0.1);
     }
   }
 
@@ -124,7 +125,7 @@
     if (!cols.length) return;
     const tl = gsap.timeline({ scrollTrigger: onEnter(cols[0], "top 85%"), defaults: { ease: EASE } });
     cols.forEach((c, i) => {
-      tl.from($$("h3, li", c), { yPercent: 60, autoAlpha: 0, duration: 0.8, stagger: 0.05 }, i * 0.12);
+      tl.from($$("h3, li", c), { yPercent: 60, opacity: 0, duration: 0.8, stagger: 0.05 }, i * 0.12);
     });
   }
 
@@ -140,7 +141,7 @@
     for (const item of $$(".tl .item")) {
       gsap.timeline({ scrollTrigger: onEnter(item, "top 70%"), defaults: { ease: EASE } })
         .fromTo(item, { "--dot": 0 }, { "--dot": 1, duration: 0.6, ease: "back.out(3)" })
-        .from(item.children, { x: -16, autoAlpha: 0, duration: 0.8, stagger: 0.08 }, 0.05);
+        .from(item.children, { x: -16, opacity: 0, duration: 0.8, stagger: 0.08 }, 0.05);
     }
   }
 
@@ -151,11 +152,11 @@
     const txt = $(".txt", big);
     const dot = $(".dot", big);
     if (!txt) return;
-    const chars = SplitText.create(txt, { type: "words,chars", mask: "chars" }).chars;
+    const chars = SplitText.create(txt, { type: "words,chars", mask: "chars", aria: "none" }).chars;
     gsap.timeline({ scrollTrigger: onEnter(big, "top 85%"), defaults: { ease: EASE } })
       .from(chars, { yPercent: 110, duration: 1, stagger: 0.025 })
       .from(dot, { scale: 0, transformOrigin: "50% 85%", duration: 0.7, ease: "back.out(2.6)" }, "-=0.45")
-      .from($$("#contact-title ~ .links li"), { y: 16, autoAlpha: 0, duration: 0.7, stagger: 0.08 }, "-=0.6");
+      .from($$("#contact-title ~ .links li"), { y: 16, opacity: 0, duration: 0.7, stagger: 0.08 }, "-=0.6");
   }
 
   /* Rodapé: a logo gira 180° e o q volta a ser b, fechando o giro do hero. */

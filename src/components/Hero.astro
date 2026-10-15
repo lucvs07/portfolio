@@ -19,9 +19,9 @@ const t = getDict(lang);
 <style>
   .hero { position: relative; min-height: calc(100svh - 4rem); display: grid; grid-template-rows: auto minmax(40svh, 1fr) auto; padding-block: 3rem 1.5rem; }
   @media (min-width: 900px) { .hero { grid-template-columns: 1.1fr 1fr; grid-template-rows: 1fr auto; align-items: center; } }
-  .name { font-size: clamp(4.25rem, 13vw, 11rem); line-height: 0.86; letter-spacing: -0.02em; }
+  .name { font-size: clamp(3.9rem, 13vw, 11rem); line-height: 0.86; letter-spacing: -0.02em; }
   /* Cada linha do nome é uma máscara: o GSAP faz o texto subir de dentro dela. */
-  .ln { display: block; overflow: clip; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+  .ln { display: block; overflow: clip; padding-bottom: 0.12em; margin-bottom: -0.12em; }
   .ln > span { display: block; white-space: nowrap; }
   .dot { display: inline-block; color: var(--accent); }
   .lead { margin-top: 2rem; max-width: 30rem; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.45; color: var(--muted); }

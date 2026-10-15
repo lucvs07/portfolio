@@ -60,6 +60,7 @@ function Logo({ still }: { still: boolean }) {
   const { material, heat } = useForgeMaterial();
   const canvas = useThree((st) => st.gl.domElement);
   const near = useRef(0);
+  const lastMove = useRef(0);
   const group = useRef<THREE.Group>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
@@ -72,6 +73,7 @@ function Logo({ still }: { still: boolean }) {
       target.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       target.current.y = (e.clientY / window.innerHeight) * 2 - 1;
       // proximidade do cursor ao centro do canvas, para o calor da forja
+      lastMove.current = performance.now();
       const r = canvas.getBoundingClientRect();
       near.current = Math.max(0, 1 - Math.hypot((e.clientX - (r.left + r.width / 2)) / (r.width / 2), (e.clientY - (r.top + r.height / 2)) / (r.height / 2)) / 0.9);
     };
@@ -95,7 +97,8 @@ function Logo({ still }: { still: boolean }) {
     const t = state.clock.elapsedTime;
     g.rotation.set(pointer.current.y * 0.35 + (still ? 0 : Math.sin(t * 0.6) * 0.04), spin.current + pointer.current.x * 0.55 - 0.35, flip.current);
     g.position.y = still ? 0 : Math.sin(t * 0.8) * 0.06;
-    warmth.current = damp(warmth.current, still ? 0 : near.current, 3, delta);
+    const recent = performance.now() - lastMove.current < 1500;
+    warmth.current = damp(warmth.current, still || !recent ? 0 : near.current, 3, delta);
     heat.value = still ? 0.5 : 0.45 + 0.15 * Math.sin(t * 1.4) + warmth.current * 0.9;
   });
 

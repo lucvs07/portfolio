@@ -36,7 +36,7 @@ p { text-wrap: pretty; }
 
 /* Movimento (Motion.astro): o hero espera o GSAP; o resto é escondido pelo próprio script. */
 .motion .hero :is(.name, .lead, .index) { visibility: hidden; }
-.line { padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.line { padding-block: 0.12em; margin-block: -0.12em; }
 
 /* Logo do hero (ilha React): a SVG plana aparece primeiro e some quando o 3D renderiza. */
 .logo-hero { position: absolute; inset: 0; color: var(--accent); }

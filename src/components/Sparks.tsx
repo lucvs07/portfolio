@@ -1,5 +1,5 @@
 // Faíscas do hero: saem do cursor quando ele se move sobre a logo e, paradas, escapam de vez em
-// quando da borda da logo. Elas se apagam até a cor do fundo do tema.
+// quando da borda da logo. Elas se apagam pelo alfa.
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -28,12 +28,13 @@ export default function Sparks({ light }: { light: boolean }) {
   const points = useRef<THREE.Points>(null);
   const pool = useMemo(() => createPool(n), [n]);
   const sprite = useMemo(makeSprite, []);
-  const colors = useMemo(() => {
+  // RGBA por faísca: a cor vem da paleta do tema e o alfa é o brilho que resta (some de verdade,
+  // nos dois temas). O buffer é um só; trocar o tema só reescreve as cores.
+  const rgba = useMemo(() => new Float32Array(n * 4), [n]);
+  useEffect(() => {
     const pal = (light ? PALETTE_LIGHT : PALETTE).map((c) => new THREE.Color(c));
-    const base = new Float32Array(n * 3);
-    for (let i = 0; i < n; i++) pal[i % pal.length].toArray(base, i * 3);
-    return { base, live: new Float32Array(n * 3), bg: new THREE.Color(light ? "#F6F1EB" : "#000000"), tmp: new THREE.Color() };
-  }, [n, light]);
+    for (let i = 0; i < n; i++) pal[i % pal.length].toArray(rgba, i * 4);
+  }, [n, light, rgba]);
   const cursor = useRef({ x: 0, y: 0, vx: 0, vy: 0, inside: false, moved: 0 });
   const acc = useRef(0);
 
@@ -70,8 +71,7 @@ export default function Sparks({ light }: { light: boolean }) {
       }
     }
     step(pool, dt);
-    const { base, live, bg, tmp } = colors;
-    for (let i = 0; i < n; i++) tmp.fromArray(base, i * 3).lerp(bg, 1 - fade(pool, i)).toArray(live, i * 3);
+    for (let i = 0; i < n; i++) rgba[i * 4 + 3] = fade(pool, i);
     const g = points.current?.geometry;
     if (!g) return;
     (g.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
@@ -82,7 +82,7 @@ export default function Sparks({ light }: { light: boolean }) {
     <points ref={points} frustumCulled={false}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[pool.pos, 3]} />
-        <bufferAttribute attach="attributes-color" args={[colors.live, 3]} />
+        <bufferAttribute attach="attributes-color" args={[rgba, 4]} />
       </bufferGeometry>
       <pointsMaterial
         map={sprite}

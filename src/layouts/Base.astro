@@ -25,7 +25,7 @@ const og = new URL(withBase("og.png"), Astro.site).href;
         // Movimento: só esconde o que vai animar se o script de animação rodar em até 3 s.
         if (matchMedia("(prefers-reduced-motion: no-preference)").matches) {
           root.classList.add("motion");
-          setTimeout(() => { if (!root.classList.contains("motion-on")) root.classList.remove("motion"); }, 3000);
+          setTimeout(() => { if (!root.classList.contains("motion-on")) root.classList.remove("motion"); }, 1200);
         }
         let t = null;
         try { t = localStorage.getItem("theme"); } catch (e) {}

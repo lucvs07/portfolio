@@ -10,7 +10,7 @@ const t = getDict(lang);
 <section id={SECTION_IDS[lang].contact} class="section" aria-labelledby="contact-title">
   <div class="wrap">
     <p class="num">05 — {t.nav.contact}</p>
-    <h2 id="contact-title" class="big"><span class="txt">{t.contact.title.replace(/\.$/, "")}</span><span class="dot">.</span></h2>
+    <h2 id="contact-title" class="big" aria-label={t.contact.title}><span class="txt">{t.contact.title.replace(/\.$/, "")}</span><span class="dot">.</span></h2>
     <ul class="links">
       {t.contact.links.map((l) => (
         <li><a class="link" href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`${l.name} (${t.contact.opens})`}>{l.name}<Arrow /></a></li>
@@ -19,7 +19,7 @@ const t = getDict(lang);
   </div>
 </section>
 <style>
-  .big { font-size: clamp(3.5rem, 10vw, 8rem); line-height: 0.9; margin-top: 1rem; }
+  .big { font-size: clamp(2.9rem, 13vw, 8rem); line-height: 0.9; margin-top: 1rem; }
   .dot { display: inline-block; color: var(--accent); }
   .links { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin-top: 3rem; list-style: none; font-size: 1.25rem; }
 </style>
