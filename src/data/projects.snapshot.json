@@ -1,50 +1,130 @@
 {
-  "generatedAt": "2026-10-14T20:42:33.140Z",
+  "generatedAt": "2026-10-26T14:44:45.251Z",
   "projects": [
     {
-      "repo": "lucvs07/dot-study",
-      "name": "dot-study",
+      "repo": "lucvs07/CARI",
+      "name": "CARI",
       "description": {
-        "en": "",
-        "pt": ""
+        "en": "System for organizing household food and encouraging sustainable consumption, built as a PHP CRUD. Final course project at Etec Parque Belém.",
+        "pt": "Sistema para organizar os alimentos de casa e incentivar o consumo sustentável, feito como CRUD em PHP. TCC da Etec Parque Belém."
       },
       "tech": [
-        "TypeScript",
-        "CSS",
-        "JavaScript",
-        "HTML"
+        "PHP",
+        "SQL",
+        "HTML",
+        "CSS"
       ],
-      "repoUrl": "https://github.com/lucvs07/dot-study",
-      "demoUrl": "https://dot-study-cp5-lucas-greccos-projects.vercel.app",
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2026-10-06T22:55:42Z"
-    },
-    {
-      "repo": "lucvs07/Fiap-Skill-Match",
-      "name": "Fiap-Skill-Match",
-      "description": {
-        "en": "",
-        "pt": ""
-      },
-      "tech": [
-        "Python",
-        "HTML"
-      ],
-      "repoUrl": "https://github.com/lucvs07/Fiap-Skill-Match",
+      "repoUrl": "https://github.com/lucvs07/CARI",
       "demoUrl": null,
       "covers": [],
       "coverFile": null,
       "featured": true,
-      "pushedAt": "2026-05-05T12:57:18Z"
+      "pushedAt": "2026-10-26T14:44:17Z"
+    },
+    {
+      "repo": "lucvs07/OneWay",
+      "name": "One Way",
+      "description": {
+        "en": "E-commerce system for a clothing store, with a PHP CRUD to manage product stock. School project at Etec Parque Belém.",
+        "pt": "Sistema de e-commerce para uma loja de roupas, com CRUD em PHP para gerenciar o estoque de produtos. Projeto da Etec Parque Belém."
+      },
+      "tech": [
+        "PHP",
+        "SQL",
+        "HTML",
+        "CSS"
+      ],
+      "repoUrl": "https://github.com/lucvs07/OneWay",
+      "demoUrl": null,
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:44:14Z"
+    },
+    {
+      "repo": "lucvs07/deereGO-ESP",
+      "name": "DeereGo · ESP32",
+      "description": {
+        "en": "ESP32 firmware for DeereGo: locates factory tuggers by Wi-Fi signal strength (RSSI) multilateration and sends their position to the API in real time.",
+        "pt": "Firmware ESP32 do DeereGo: localiza os rebocadores da fábrica por multilateração do sinal Wi-Fi (RSSI) e envia a posição à API em tempo real."
+      },
+      "tech": [
+        "C++",
+        "ESP32"
+      ],
+      "repoUrl": "https://github.com/lucvs07/deereGO-ESP",
+      "demoUrl": null,
+      "covers": [
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/proposta.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/arquitetura.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/diagrama.png",
+        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/banco-de-dados.jpg"
+      ],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:44:12Z"
+    },
+    {
+      "repo": "lucvs07/Front-Hunger",
+      "name": "Front-Hunger",
+      "description": {
+        "en": "Front end for Hungerdle, a daily game where you guess a Hunger Games character from clues revealed with each attempt. React and TypeScript.",
+        "pt": "Front-end do Hungerdle, jogo diário em que você descobre um personagem de Jogos Vorazes a partir de pistas reveladas a cada tentativa. React e TypeScript."
+      },
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Front-Hunger",
+      "demoUrl": "https://front-hunger.vercel.app",
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:44:09Z"
+    },
+    {
+      "repo": "lucvs07/Api-Hunger",
+      "name": "Hungerdle",
+      "description": {
+        "en": "REST API for Hungerdle, a daily game where you guess a Hunger Games character: serves the character catalog and the character of the day. Node.js, Express and MongoDB.",
+        "pt": "API REST do Hungerdle, jogo diário de adivinhar personagens de Jogos Vorazes: fornece o catálogo de personagens e o personagem do dia. Node.js, Express e MongoDB."
+      },
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Api-Hunger",
+      "demoUrl": "https://front-hunger.vercel.app",
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:44:07Z"
+    },
+    {
+      "repo": "lucvs07/ache-capture",
+      "name": "ache-capture",
+      "description": {
+        "en": "Computer vision service for the packaging inspection system: YOLO detects and tracks packages on the production line, captures a photo as each one crosses a trigger line and sends it for analysis.",
+        "pt": "Serviço de visão computacional do sistema de inspeção de embalagens: com YOLO, detecta e rastreia embalagens na linha de produção, captura uma foto quando cada uma cruza a linha de disparo e a envia para análise."
+      },
+      "tech": [
+        "Python"
+      ],
+      "repoUrl": "https://github.com/lucvs07/ache-capture",
+      "demoUrl": null,
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:44:04Z"
     },
     {
       "repo": "lucvs07/ache-vision",
       "name": "ache-vision",
       "description": {
-        "en": "",
-        "pt": ""
+        "en": "Desktop dashboard (Electron + React) for the packaging inspection system on a pharmaceutical production line, with inspection history, lookups and OEE metrics. Pairs with ache-capture.",
+        "pt": "Dashboard desktop (Electron + React) do sistema de inspeção de embalagens em linha de produção farmacêutica, com histórico, consultas e indicadores de OEE. Funciona junto com o ache-capture."
       },
       "tech": [
         "TypeScript",
@@ -57,31 +137,126 @@
       "covers": [],
       "coverFile": null,
       "featured": true,
-      "pushedAt": "2025-11-08T19:12:58Z"
+      "pushedAt": "2026-10-26T14:44:02Z"
     },
     {
-      "repo": "lucvs07/ache-capture",
-      "name": "ache-capture",
+      "repo": "lucvs07/Fiap-Skill-Match",
+      "name": "Fiap-Skill-Match",
       "description": {
-        "en": "Repository to the Computer Vision python project",
-        "pt": "Repository to the Computer Vision python project"
+        "en": "Web platform that connects FIAP students and mentors to build research project squads, with openings by role, invitations, mentorship requests and skill search. Flask and Bootstrap.",
+        "pt": "Plataforma web que conecta alunos e mentores da FIAP para formar squads de Iniciação Científica, com vagas por papel, convites, pedidos de mentoria e busca por skills. Flask e Bootstrap."
       },
       "tech": [
-        "Python"
+        "Python",
+        "HTML"
       ],
-      "repoUrl": "https://github.com/lucvs07/ache-capture",
+      "repoUrl": "https://github.com/lucvs07/Fiap-Skill-Match",
       "demoUrl": null,
       "covers": [],
       "coverFile": null,
       "featured": true,
-      "pushedAt": "2025-11-06T21:28:49Z"
+      "pushedAt": "2026-10-26T14:44:00Z"
+    },
+    {
+      "repo": "lucvs07/dot-study",
+      "name": "dot-study",
+      "description": {
+        "en": "Gamified study platform: Pomodoro sessions turn into notes and posts shared with the community, rewarded with coins, rankings and avatar customization. React, Express, Prisma and PostgreSQL.",
+        "pt": "Plataforma gamificada de estudos: sessões com pomodoro viram anotações e posts compartilhados com a comunidade, recompensados com moedas, ranking e customização do personagem. React, Express, Prisma e PostgreSQL."
+      },
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/dot-study",
+      "demoUrl": "https://dot-study-cp5-lucas-greccos-projects.vercel.app",
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:43:58Z"
+    },
+    {
+      "repo": "lucvs07/PFL",
+      "name": "PFL",
+      "description": {
+        "en": "Live 1v1 turn-based tactics game that mixes American football, cards and the 151 original Pokémon. Rules engine, Socket.IO server and React + Phaser client.",
+        "pt": "Jogo de estratégia tática por turnos, 1x1 ao vivo, que mistura futebol americano, cartas e os 151 Pokémon da 1ª geração. Motor de regras, servidor Socket.IO e cliente React + Phaser."
+      },
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "repoUrl": "https://github.com/lucvs07/PFL",
+      "demoUrl": "https://lucvs07.github.io/PFL/",
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:43:56Z"
+    },
+    {
+      "repo": "lucvs07/cypher-capture",
+      "name": "cypher-capture",
+      "description": {
+        "en": "Computer vision pipeline for Cypher: uses YOLO to detect PPE, estimate pose, score ergonomics (REBA) and flag critical zones, reporting incidents to the backend with one process per camera.",
+        "pt": "Pipeline de visão computacional do Cypher: usa YOLO para detectar EPIs, estimar a pose, calcular o escore ergonômico REBA e sinalizar zonas críticas, reportando incidentes ao backend com um processo por câmera."
+      },
+      "tech": [
+        "Python"
+      ],
+      "repoUrl": "https://github.com/lucvs07/cypher-capture",
+      "demoUrl": null,
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:43:54Z"
+    },
+    {
+      "repo": "lucvs07/Cypher-Api",
+      "name": "Cypher-Api",
+      "description": {
+        "en": "Backend for Cypher, an industrial safety platform that uses computer vision to detect PPE misuse, risky postures and falls in real time. Spring Boot and Java 21, with multi-tenant auth, roles, reports and LLM analysis.",
+        "pt": "Backend do Cypher, plataforma de segurança industrial que usa visão computacional para detectar uso incorreto de EPI, posturas de risco e quedas em tempo real. Spring Boot e Java 21, com autenticação multi-tenant, papéis, relatórios e análise por LLM."
+      },
+      "tech": [
+        "Java",
+        "Python"
+      ],
+      "repoUrl": "https://github.com/lucvs07/Cypher-Api",
+      "demoUrl": null,
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:43:52Z"
+    },
+    {
+      "repo": "lucvs07/pokedex",
+      "name": "Pokédex",
+      "description": {
+        "en": "Pokédex web app that searches Pokémon and shows each species' details using PokéAPI. HTML, CSS and JavaScript.",
+        "pt": "Pokédex web que busca Pokémon e mostra os dados de cada espécie usando a PokéAPI. HTML, CSS e JavaScript."
+      },
+      "tech": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "repoUrl": "https://github.com/lucvs07/pokedex",
+      "demoUrl": null,
+      "covers": [],
+      "coverFile": null,
+      "featured": true,
+      "pushedAt": "2026-10-26T14:43:45Z"
     },
     {
       "repo": "An4lu/DeereGO",
       "name": "DeereGo",
       "description": {
-        "en": "System for IoT-based logistics optimization in manufacturing, integrating IoT devices to monitor and optimize the flow of materials and products.",
-        "pt": "Sistema de otimização logística com IoT para a indústria, integrando dispositivos IoT para monitorar e otimizar o fluxo de materiais e produtos."
+        "en": "Logistics tracking for a John Deere factory: ESP32 devices locate tuggers over Wi-Fi and a web dashboard shows deliveries and tugger performance in real time. React, Node.js and MongoDB.",
+        "pt": "Rastreamento logístico para uma fábrica da John Deere: dispositivos ESP32 localizam os rebocadores via Wi-Fi e um painel web mostra as entregas e o desempenho em tempo real. React, Node.js e MongoDB."
       },
       "tech": [
         "React",
@@ -104,126 +279,6 @@
       "coverFile": "an4lu--deerego.png",
       "featured": true,
       "pushedAt": "2025-07-08T03:28:27Z"
-    },
-    {
-      "repo": "lucvs07/Api-Hunger",
-      "name": "Hungerdle",
-      "description": {
-        "en": "Web game where players guess a Hunger Games character from clues.",
-        "pt": "Jogo web em que o jogador descobre um personagem de Jogos Vorazes a partir de pistas."
-      },
-      "tech": [
-        "React",
-        "Node.js",
-        "MongoDB"
-      ],
-      "repoUrl": "https://github.com/lucvs07/Api-Hunger",
-      "demoUrl": "https://front-hunger.vercel.app",
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2024-12-03T01:11:02Z"
-    },
-    {
-      "repo": "lucvs07/Front-Hunger",
-      "name": "Front-Hunger",
-      "description": {
-        "en": "Front-End for a IDLE game about Hunger Games's Saga",
-        "pt": "Front-End for a IDLE game about Hunger Games's Saga"
-      },
-      "tech": [
-        "TypeScript",
-        "JavaScript",
-        "HTML"
-      ],
-      "repoUrl": "https://github.com/lucvs07/Front-Hunger",
-      "demoUrl": "https://front-hunger.vercel.app",
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2024-11-05T01:28:57Z"
-    },
-    {
-      "repo": "lucvs07/deereGO-ESP",
-      "name": "DeereGo · ESP32",
-      "description": {
-        "en": "IoT solution that uses ESP32 microcontrollers to locate and monitor assets in real time.",
-        "pt": "Solução IoT com microcontroladores ESP32 para localizar e monitorar ativos em tempo real."
-      },
-      "tech": [
-        "C++",
-        "ESP32"
-      ],
-      "repoUrl": "https://github.com/lucvs07/deereGO-ESP",
-      "demoUrl": null,
-      "covers": [
-        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/proposta.png",
-        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/arquitetura.png",
-        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/diagrama.png",
-        "https://raw.githubusercontent.com/lucvs07/deereGO-ESP/main/src/assets/banco-de-dados.jpg"
-      ],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2024-10-26T02:37:42Z"
-    },
-    {
-      "repo": "lucvs07/pokedex",
-      "name": "Pokédex",
-      "description": {
-        "en": "Web app to search for Pokémon and learn about different species.",
-        "pt": "Aplicativo web para buscar Pokémon e conhecer diferentes espécies."
-      },
-      "tech": [
-        "JavaScript",
-        "HTML",
-        "CSS"
-      ],
-      "repoUrl": "https://github.com/lucvs07/pokedex",
-      "demoUrl": null,
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2024-08-12T18:03:52Z"
-    },
-    {
-      "repo": "lucvs07/OneWay",
-      "name": "One Way",
-      "description": {
-        "en": "E-commerce web system for a clothing store, with product listings, cart and checkout.",
-        "pt": "Sistema web de e-commerce para uma loja de roupas, com listagem de produtos, carrinho e checkout."
-      },
-      "tech": [
-        "PHP",
-        "SQL",
-        "HTML",
-        "CSS"
-      ],
-      "repoUrl": "https://github.com/lucvs07/OneWay",
-      "demoUrl": null,
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2023-12-21T03:06:26Z"
-    },
-    {
-      "repo": "lucvs07/CARI",
-      "name": "CARI",
-      "description": {
-        "en": "System for sustainable food organization and consumption, connecting consumers with local food sources to reduce waste.",
-        "pt": "Sistema para organização e consumo sustentável de alimentos, conectando consumidores a fontes locais para reduzir o desperdício."
-      },
-      "tech": [
-        "PHP",
-        "SQL",
-        "HTML",
-        "CSS"
-      ],
-      "repoUrl": "https://github.com/lucvs07/CARI",
-      "demoUrl": null,
-      "covers": [],
-      "coverFile": null,
-      "featured": true,
-      "pushedAt": "2023-12-20T00:52:24Z"
     }
   ]
 }
