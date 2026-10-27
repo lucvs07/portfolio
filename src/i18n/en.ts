@@ -35,6 +35,9 @@ export const en: Dict = {
   },
   stack: {
     title: "Tools I use",
+    label: "Technologies",
+    usedIn: "Used in",
+    hint: "Scroll the page, use the arrow keys or click a word.",
     groups: [
       { title: "Programming", items: ["Java", "JSF", "TypeScript", "JavaScript", "React", "Node.js", "Python", "PHP", "C++"] },
       { title: "Data", items: ["SQL", "MongoDB", "Pandas", "Excel"] },
@@ -44,10 +47,22 @@ export const en: Dict = {
   path: {
     title: "Education, experience and awards",
     items: [
-      { org: "Asaas", role: "Full Stack Developer (Junior) · Skywalkers team (product invoices)", period: "Dec 2025 – present", group: "asaas" },
-      { org: "Asaas", role: "Full Stack Software Engineering intern · same team", period: "May – Dec 2025", group: "asaas" },
-      { org: "FIAP", role: "Computer Engineering (bachelor's degree)", period: "2024 – 2029" },
-      { org: "NEXT · SmartFinder Challenge, FIAP", role: "Finalist and podium", period: "2024", note: "Location system built with John Deere." },
+      {
+        org: "Asaas", role: "Skywalkers team (product invoices)", period: "May 2025 – present",
+        steps: [
+          { period: "May – Dec 2025", title: "Full Stack Software Engineering intern" },
+          { period: "Dec 2025 – present", title: "Full Stack Developer (Junior)", full: true },
+        ],
+      },
+      {
+        org: "FIAP", role: "Computer Engineering (bachelor's degree)", period: "2024 – 2029",
+        steps: [
+          { period: "2024", title: "NEXT SmartFinder Challenge", partner: "John Deere", result: "Finalist and podium", full: true },
+          { period: "2025", title: "Microsoft VisionBox Challenge", partner: "Aché", result: "Finalist" },
+          { period: "2026", title: "Industrial Safety Vision Challenge", partner: "SPI and Metaindústria", result: "Finalist and podium", full: true },
+        ],
+        legend: "Filled dot: podium. Hollow: finalist.",
+      },
       { org: "ISI Dublin", role: "English exchange awarded for academic merit at Etec", period: "Feb – Mar 2023" },
       { org: "Instituto Ismart", role: "Ismart Online scholar", period: "2021 – 2023", note: "Programming, math and a mental health app built as a team." },
       { org: "Etec Parque Belém", role: "Informatics for the internet (technical high school)", period: "2021 – 2023" },

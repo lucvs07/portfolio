@@ -1,28 +1,228 @@
 ---
+import snapshot from "../data/projects.snapshot.json";
 import { getDict } from "../i18n/index";
 import type { Lang } from "../i18n/types";
+import type { Project } from "../lib/github/types";
+import { projectAnchor, projectsUsing } from "../lib/stack";
 import { SECTION_IDS } from "./sections";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = getDict(lang);
+const projects = (snapshot as { projects: Project[] }).projects;
+
+// A roda: cada tecnologia é um raio; a marca laranja fica às 3 horas (ângulo 0).
+const items = t.stack.groups.flatMap((g) => g.items.map((name) => ({ name, group: g.title, projects: projectsUsing(projects, name) })));
+const step = 360 / items.length;
+const flip = (deg: number) => { const a = ((deg % 360) + 360) % 360; return a > 90 && a < 270; };
+
+// Arcos finos por grupo, com uma folga entre eles, em coordenadas de 0 a 100.
+const R = 49.2;
+const at = (deg: number) => [50 + R * Math.cos((deg * Math.PI) / 180), 50 + R * Math.sin((deg * Math.PI) / 180)].map((v) => v.toFixed(2));
+let from = -step / 2;
+const arcs = t.stack.groups.map((g) => {
+  const a0 = from + 1.6, a1 = from + g.items.length * step - 1.6;
+  from += g.items.length * step;
+  const [x0, y0] = at(a0), [x1, y1] = at(a1);
+  return `M${x0} ${y0} A${R} ${R} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1} ${y1}`;
+});
 ---
-<section id={SECTION_IDS[lang].stack} class="section" aria-labelledby="stack-title">
+<section id={SECTION_IDS[lang].stack} class="section stack" aria-labelledby="stack-title">
   <div class="wrap">
     <p class="num">03 — {t.nav.stack}</p>
     <h2 id="stack-title" class="title">{t.stack.title}</h2>
-    <div class="cols">
-      {t.stack.groups.map((g) => (
-        <div>
-          <h3>{g.title}</h3>
-          <ul>{g.items.map((x) => <li>{x}</li>)}</ul>
+    <div class="track">
+      <div class="pin">
+        <div class="stage">
+          <div class="wheel" role="group" aria-label={t.stack.label} data-step={step}>
+            <svg class="rings" viewBox="0 0 100 100" aria-hidden="true">
+              {arcs.map((d) => <path d={d} />)}
+              <circle cx="50" cy="50" r="21" />
+            </svg>
+            <div class="rot">
+              {items.map((it, i) => (
+                <button type="button" class:list={["spoke", { flip: flip(i * step) }]} style={`--a: ${i * step}deg`}
+                  aria-pressed={i === 0 ? "true" : "false"} aria-controls={`stack-pane-${i}`} tabindex={i === 0 ? 0 : -1}
+                  data-group={it.group}><span>{it.name}</span></button>
+              ))}
+            </div>
+            <span class="mark" aria-hidden="true"></span>
+            <p class="hub" aria-hidden="true">{items[0].group}</p>
+          </div>
+          <div class="detail" aria-live="polite">
+            {items.map((it, i) => (
+              <div class="pane" id={`stack-pane-${i}`} hidden={i !== 0}>
+                <p class="group">{it.group}</p>
+                <h3>{it.name}<span class="dot">.</span></h3>
+                {it.projects.length > 0 && (
+                  <ul aria-label={t.stack.usedIn}>
+                    {it.projects.map((p) => <li><a class="link" href={`#${projectAnchor(p)}`}>{p.name}</a></li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
+            <p class="hint">{t.stack.hint}</p>
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </section>
+
 <style>
-  .cols { display: grid; gap: 2.5rem; margin-top: 3rem; }
-  @media (min-width: 700px) { .cols { grid-template-columns: repeat(3, 1fr); } }
-  h3 { font-size: 0.95rem; font-weight: 500; color: var(--muted); margin-bottom: 1rem; }
-  ul { list-style: none; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.6; font-weight: 500; }
+  .track { margin-top: 2rem; }
+  /* Com movimento, a seção fica mais alta que a tela e o palco fica preso enquanto a rolagem gira a roda. */
+  @media (prefers-reduced-motion: no-preference) {
+    .stack.live .track { height: calc(100svh + 150vh); }
+    .stack.live .pin { position: sticky; top: 4rem; height: calc(100svh - 4rem); display: grid; align-items: center; }
+  }
+  @media (prefers-reduced-motion: no-preference) and (max-width: 899px) {
+    .stack.live .track { height: calc(100svh + 110vh); }
+    .stack.live .pin { top: 7rem; height: calc(100svh - 7rem); }
+  }
+  .stage { display: grid; gap: 1.5rem 4rem; align-items: center; }
+  @media (min-width: 900px) { .stage { grid-template-columns: minmax(0, 34rem) 1fr; } }
+
+  .wheel { --r0: 7.9rem; --len: 9.5rem; --fs: 1.2rem; position: relative; width: 100%; max-width: min(34rem, 100svh - 8rem); aspect-ratio: 1; margin-inline: auto; touch-action: pan-y; user-select: none; }
+  @media (max-width: 899px) { .wheel { --r0: 3.9rem; --len: 6.4rem; --fs: 0.9rem; max-width: min(21rem, 100svh - 22rem); } }
+  .rings { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: var(--rule); stroke-width: 0.25; }
+  .rot { position: absolute; inset: 0; }
+  .spoke { position: absolute; left: 50%; top: 50%; width: var(--len); height: 2em; margin-top: -1em; padding: 0; font: inherit; font-size: var(--fs); color: var(--muted); background: none; border: 0; cursor: pointer;
+    transform-origin: 0 50%; transform: rotate(var(--a)) translateX(var(--r0)); }
+  .spoke > span { display: flex; align-items: center; height: 100%; padding-inline: 0.6em; white-space: nowrap; transition: color 0.25s ease; }
+  .spoke.flip > span { transform: rotate(180deg); justify-content: flex-end; }
+  .spoke:hover, .spoke[aria-pressed="true"] { color: var(--text); }
+  .spoke[aria-pressed="true"] { font-weight: 600; }
+  .spoke[aria-pressed="true"] > span::before { content: ""; flex: none; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--accent); margin-right: 0.5em; }
+  .mark { position: absolute; right: -0.6rem; top: 50%; width: 0.9rem; height: 1px; background: var(--accent); }
+  .mark::after { content: ""; position: absolute; right: 0; top: -0.25rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent); }
+  .hub { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: calc(var(--r0) * 1.6); text-align: center; font-weight: 600; font-size: 1rem; line-height: 1.2; color: var(--muted); text-wrap: balance; pointer-events: none; }
+  @media (max-width: 899px) { .hub { font-size: 0.8rem; } }
+
+  .detail { max-width: 30rem; min-height: 12rem; }
+  @media (max-width: 899px) { .detail { min-height: 9.5rem; } }
+  .group { font-size: 0.95rem; color: var(--muted); }
+  .detail h3 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-top: 0.25rem; }
+  .detail .dot { color: var(--accent); }
+  .detail ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 1rem; }
+  .hint { margin-top: 1.5rem; font-size: 0.95rem; color: var(--muted); }
+  @media (hover: none) { .hint { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .spoke > span { transition: none; } }
 </style>
+
+<script>
+  // Roda da stack. A rolagem, as setas, o clique e o arraste giram a mesma roda: o ângulo é a soma de um
+  // deslocamento (setas, clique, arraste) com a parte da rolagem, então a rolagem continua de onde o
+  // visitante deixou. Com movimento reduzido a roda não fica presa nem gira com a rolagem, e troca sem animar.
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  for (const wheel of document.querySelectorAll<HTMLElement>(".stack .wheel")) {
+    const section = wheel.closest<HTMLElement>(".stack")!;
+    const track = section.querySelector<HTMLElement>(".track")!;
+    const pin = section.querySelector<HTMLElement>(".pin")!;
+    const hub = wheel.querySelector<HTMLElement>(".hub")!;
+    const spokes = [...wheel.querySelectorAll<HTMLButtonElement>(".spoke")];
+    const panes = [...section.querySelectorAll<HTMLElement>(".pane")];
+    const n = spokes.length;
+    const step = Number(wheel.dataset.step);
+    const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const state = { angle: 0 };
+    let offset = 0, scrollPart = 0, sel = 0;
+
+    const place = (deg: number) => {
+      state.angle = deg;
+      spokes.forEach((s, i) => {
+        const a = i * step + deg, norm = ((a % 360) + 360) % 360;
+        s.style.setProperty("--a", `${a}deg`);
+        s.classList.toggle("flip", norm > 90 && norm < 270);
+      });
+    };
+    const turn = (to: number, duration = 0.7) => {
+      gsap.killTweensOf(state);
+      if (reduced()) place(to);
+      else gsap.to(state, { angle: to, duration, ease: "expo.out", onUpdate: () => place(state.angle) });
+    };
+    const nearest = (deg: number) => ((Math.round(-deg / step) % n) + n) % n;
+    const show = (i: number) => {
+      if (i === sel) return;
+      sel = i;
+      spokes.forEach((s, k) => { s.setAttribute("aria-pressed", String(k === i)); s.tabIndex = k === i ? 0 : -1; });
+      panes.forEach((p, k) => (p.hidden = k !== i));
+      hub.textContent = spokes[i].dataset.group ?? "";
+    };
+    const select = (i: number, focus = false) => {
+      i = ((i % n) + n) % n;
+      const d = ((((-i * step - state.angle) % 360) + 540) % 360) - 180; // menor caminho até a marca
+      const target = state.angle + d;
+      offset = target - scrollPart;
+      show(i);
+      turn(target);
+      if (focus) spokes[i].focus({ preventScroll: true });
+    };
+
+    // Arrastar (mouse, ou dedo na horizontal): gira junto e encaixa ao soltar.
+    let drag: { cx: number; cy: number; a0: number; start: number } | null = null;
+    let dragged = false;
+    const pointerAngle = (e: PointerEvent, cx: number, cy: number) => (Math.atan2(e.clientY - cy, e.clientX - cx) * 180) / Math.PI;
+    wheel.addEventListener("pointerdown", (e) => {
+      const r = wheel.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      drag = { cx, cy, a0: pointerAngle(e, cx, cy), start: state.angle };
+      dragged = false;
+    });
+    addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      const d = ((pointerAngle(e, drag.cx, drag.cy) - drag.a0 + 540) % 360) - 180;
+      if (Math.abs(d) > 3) { dragged = true; gsap.killTweensOf(state); }
+      if (dragged) { place(drag.start + d); show(nearest(state.angle)); }
+    });
+    addEventListener("pointerup", () => {
+      if (drag && dragged) { select(nearest(state.angle)); setTimeout(() => (dragged = false)); }
+      drag = null;
+    });
+
+    wheel.addEventListener("click", (e) => {
+      const s = (e.target as Element).closest<HTMLButtonElement>(".spoke");
+      if (s && !dragged) select(spokes.indexOf(s));
+    });
+    wheel.addEventListener("keydown", (e) => {
+      const move: Record<string, number> = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+      if (e.key in move) select(sel + move[e.key], true);
+      else if (e.key === "Home") select(0, true);
+      else if (e.key === "End") select(n - 1, true);
+      else return;
+      e.preventDefault();
+    });
+
+    gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+      section.classList.add("live");
+      // Entrada: a roda chega girando um quarto de volta, como a logo do hero.
+      const arrive = ScrollTrigger.create({
+        trigger: wheel, start: "top 80%", once: true,
+        onEnter: () => { const to = state.angle; place(to - 90); turn(to, 1.4); },
+      });
+      // Rolagem: enquanto o palco está preso, uma passada pela seção percorre a roda inteira.
+      let idle = 0;
+      const scroll = ScrollTrigger.create({
+        trigger: track,
+        start: () => `top ${parseFloat(getComputedStyle(pin).top) || 0}px`,
+        end: "bottom bottom",
+        invalidateOnRefresh: true,
+        onUpdate: (st) => {
+          if (drag) return;
+          scrollPart = -st.progress * (n - 1) * step;
+          gsap.killTweensOf(state);
+          place(offset + scrollPart);
+          show(nearest(state.angle));
+          // Ao parar, encaixa só no visual: o deslocamento não muda, para a rolagem não acumular desvio.
+          clearTimeout(idle);
+          idle = window.setTimeout(() => turn(-Math.round(-state.angle / step) * step, 0.4), 140);
+        },
+      });
+      ScrollTrigger.refresh();
+      return () => { section.classList.remove("live"); arrive.kill(); scroll.kill(); clearTimeout(idle); };
+    });
+  }
+</script>
