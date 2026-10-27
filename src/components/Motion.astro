@@ -43,7 +43,6 @@
       sections();
       about();
       projects();
-      stack();
       path();
       contact();
       footer();
@@ -119,16 +118,6 @@
     }
   }
 
-  /* Stack: três listas que caem em cascata, coluna depois de coluna. */
-  function stack() {
-    const cols = $$("#stack-title ~ .cols > div");
-    if (!cols.length) return;
-    const tl = gsap.timeline({ scrollTrigger: onEnter(cols[0], "top 85%"), defaults: { ease: EASE } });
-    cols.forEach((c, i) => {
-      tl.from($$("h3, li", c), { yPercent: 60, opacity: 0, duration: 0.8, stagger: 0.05 }, i * 0.12);
-    });
-  }
-
   /* Trajetória: a linha do tempo se desenha com a rolagem; cada marco acende quando a linha chega. */
   function path() {
     const tl = $(".tl");
@@ -142,6 +131,14 @@
       gsap.timeline({ scrollTrigger: onEnter(item, "top 70%"), defaults: { ease: EASE } })
         .fromTo(item, { "--dot": 0 }, { "--dot": 1, duration: 0.6, ease: "back.out(3)" })
         .from(item.children, { x: -16, opacity: 0, duration: 0.8, stagger: 0.08 }, 0.05);
+    }
+    // Trilhos (cargos no Asaas, desafios na FIAP): o traço se desenha e cada parada acende em ordem.
+    for (const rail of $$(".tl .rail")) {
+      const steps = $$(".step", rail);
+      gsap.timeline({ scrollTrigger: onEnter(rail, "top 75%"), defaults: { ease: EASE } })
+        .fromTo(rail, { "--rail": 0 }, { "--rail": 1, duration: 1.2, ease: "power3.inOut" })
+        .fromTo(steps, { "--dot": 0 }, { "--dot": 1, duration: 0.6, ease: "back.out(3)", stagger: 0.25 }, 0.2)
+        .from(steps.flatMap((s) => [...s.children]), { y: 10, opacity: 0, duration: 0.7, stagger: 0.06 }, 0.3);
     }
   }
 

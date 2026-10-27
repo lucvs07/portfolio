@@ -35,6 +35,9 @@ export const pt: Dict = {
   },
   stack: {
     title: "Ferramentas que uso",
+    label: "Tecnologias",
+    usedIn: "Aparece em",
+    hint: "Role a página, use as setas ou clique numa palavra.",
     groups: [
       { title: "Programação", items: ["Java", "JSF", "TypeScript", "JavaScript", "React", "Node.js", "Python", "PHP", "C++"] },
       { title: "Dados", items: ["SQL", "MongoDB", "Pandas", "Excel"] },
@@ -44,10 +47,22 @@ export const pt: Dict = {
   path: {
     title: "Formação, experiência e prêmios",
     items: [
-      { org: "Asaas", role: "Desenvolvedor Full Stack Júnior · time Skywalkers (Notas Fiscais de Produto)", period: "dez 2025 – atual", group: "asaas" },
-      { org: "Asaas", role: "Estágio em Engenharia de Software Full Stack · mesmo time", period: "mai – dez 2025", group: "asaas" },
-      { org: "FIAP", role: "Engenharia da Computação (bacharelado)", period: "2024 – 2029" },
-      { org: "NEXT · SmartFinder Challenge, FIAP", role: "Finalista e pódio", period: "2024", note: "Sistema de localização desenvolvido com a John Deere." },
+      {
+        org: "Asaas", role: "Time Skywalkers (Notas Fiscais de Produto)", period: "mai 2025 – atual",
+        steps: [
+          { period: "mai – dez 2025", title: "Estágio em Engenharia de Software Full Stack" },
+          { period: "dez 2025 – atual", title: "Desenvolvedor Full Stack Júnior", full: true },
+        ],
+      },
+      {
+        org: "FIAP", role: "Engenharia da Computação (bacharelado)", period: "2024 – 2029",
+        steps: [
+          { period: "2024", title: "NEXT SmartFinder Challenge", partner: "John Deere", result: "Finalista e pódio", full: true },
+          { period: "2025", title: "Microsoft VisionBox Challenge", partner: "Aché", result: "Finalista" },
+          { period: "2026", title: "Industrial Safety Vision Challenge", partner: "SPI e Metaindústria", result: "Finalista e pódio", full: true },
+        ],
+        legend: "Ponto cheio: pódio. Vazado: finalista.",
+      },
       { org: "ISI Dublin", role: "Intercâmbio de inglês por mérito acadêmico na Etec", period: "fev – mar 2023" },
       { org: "Instituto Ismart", role: "Bolsista Ismart Online", period: "2021 – 2023", note: "Programação, matemática e um app de saúde mental feito em equipe." },
       { org: "Etec Parque Belém", role: "Informática para internet (ensino médio técnico)", period: "2021 – 2023" },

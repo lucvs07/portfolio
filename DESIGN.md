@@ -88,7 +88,7 @@ components:
 
 A warm near-black page, set like a magazine spread. Very large Chillax type carries the voice. Generous space and 1px rules stand in for every container, and one lit object, the owner's logo extruded in glossy orange, turns to face the visitor. The interface steps back so the name, the work and the symbol lead. Orange is a signature, not a fill: it marks the period after the name, the hero index numeral, the links and the logo, and nothing else.
 
-Density is low and the rhythm editorial. Sections stack full width inside one 80rem column and are divided only by hairline rules. Lists replace grids of boxes: projects are numbered rows, the path is one timeline, the stack is three plain columns of words. Light theme is the same page printed on warm paper. Every role keeps its job, and orange text darkens to stay legible.
+Density is low and the rhythm editorial. Sections stack full width inside one 80rem column and are divided only by hairline rules. Lists replace grids of boxes: projects are numbered rows, the path is one timeline, the stack is a dial of words drawn with hairlines. Light theme is the same page printed on warm paper. Every role keeps its job, and orange text darkens to stay legible.
 
 The system is flat. Depth exists in exactly one place, the 3D logo over its soft orange glow, so the object reads as the only thing with a body.
 
@@ -99,21 +99,21 @@ The system is flat. Depth exists in exactly one place, the 3D logo over its soft
 - 1px rules separate sections, rows and the header; no cards, no shadows.
 - Pills (999px, 1px rule border) are the only bordered controls.
 - Drawn SVG strokes for arrows and markers; no icon set, no glyph icons.
-- Motion is a one-time soft rise on entry, and the logo's turn; all of it yields to reduced motion.
+- Motion is a one-time soft rise on entry, the logo's turn and the stack dial that turns with scroll; all of it yields to reduced motion.
 
 ## Colors
 
 Warm, low-chroma neutrals with a single marigold accent. Light theme maps each dark role to a paper counterpart rather than inverting.
 
 ### Primary
-- **Marigold** (marigold): the brand orange of the logo. In both themes it is the color of marks: the period after the name and after the contact headline, the filled timeline dots, the footer and hero logos, the hero glow, text selection and the skip link background. On the dark ground it is also the text-orange (9.5:1) used by links and the hero index numeral.
+- **Marigold** (marigold): the brand orange of the logo. In both themes it is the color of marks: the period after the name and after the contact headline, the filled timeline dots, the stack dial's index mark and selection dot, the footer and hero logos, the hero glow, text selection and the skip link background. On the dark ground it is also the text-orange (9.5:1) used by links and the hero index numeral.
 - **Burnt Orange Text** (burnt-orange-text): light theme only. Takes over every orange *text* role (links, the hero index numeral, the focus ring) on paper, where marigold would fall to about 1.7:1.
 
 ### Neutral
 - **Ink Ground** (ink-ground): dark page background, also the 92% base of the sticky header.
 - **Bone Text** (bone-text): dark-theme primary text and headings.
-- **Ash Muted** (ash-muted): dark-theme secondary text: the hero lead, nav links at rest, periods, notes, chips, stack group titles (8.8:1 on ink).
-- **Ember Rule** (ember-rule): dark-theme hairlines: section tops, header and footer borders, row dividers, timeline spine, pill borders.
+- **Ash Muted** (ash-muted): dark-theme secondary text: the hero lead, nav links at rest, periods, notes, chips, stack dial words at rest and group names (8.8:1 on ink).
+- **Ember Rule** (ember-rule): dark-theme hairlines: section tops, header and footer borders, row dividers, timeline spine and rails, stack dial arcs, pill borders.
 - **Paper Ground** (paper-ground): light page background.
 - **Soot Text** (soot-text): light-theme primary text; also the fixed text color on marigold fills (selection, skip link) in both themes.
 - **Clay Muted** (clay-muted): light-theme secondary text (6.3:1 on paper).
@@ -152,7 +152,7 @@ One centered column, max 80rem, with fluid side padding (clamp(1.25rem, 5vw, 4re
 
 The hero fills the first viewport (100svh minus the 4rem header): name and lead on the left, the logo stage on the right (1.1fr / 1fr from 900px), the stage dropping below the text on phones (min 40svh). A bottom rule spans the hero with a link to section 01 and a drawn down-arrow scroll cue.
 
-Breakpoints are content-driven at 700px (stack becomes three columns) and 900px (hero and featured project split into two columns, project rows gain a right-hand link column, timeline gains an 11rem period column, header nav moves inline). Below 900px the header nav becomes a second row that scrolls horizontally with hidden scrollbar.
+Breakpoints are content-driven at 700px (timeline rails turn horizontal) and 900px (hero and featured project split into two columns, project rows gain a right-hand link column, timeline gains an 11rem period column, the stack dial and its detail sit side by side at full size, header nav moves inline). Below 900px the header nav becomes a second row that scrolls horizontally with hidden scrollbar.
 
 Anchors account for the sticky header (scroll padding 7rem); smooth scrolling is disabled under reduced motion.
 
@@ -165,7 +165,7 @@ Flat. No box-shadows anywhere; separation is done with hairline rules and space.
 
 ## Shapes
 
-Square by default: sections, rows, the header and the featured project are open bands defined by rules, not boxes. Rounding is reserved for three things: pills (999px) for small controls and tags, gently rounded project covers (0.75rem), and a 2px corner on the focus outline. Circles appear as the timeline dots (0.6rem) and the theme toggle's half-filled disc. Arrows are drawn as rounded SVG strokes (1.75 stroke, 0.8em), rotated for direction.
+Square by default: sections, rows, the header and the featured project are open bands defined by rules, not boxes. Rounding is reserved for three things: pills (999px) for small controls and tags, gently rounded project covers (0.75rem), and a 2px corner on the focus outline. Circles appear as the timeline dots (0.6rem), the stack dial's hairline rings and the theme toggle's half-filled disc. Arrows are drawn as rounded SVG strokes (1.75 stroke, 0.8em), rotated for direction.
 
 ## Components
 
@@ -189,8 +189,14 @@ Text with an underline, always.
 - **Featured project:** an open band between two rules: display-scale name, description (max 36rem), chips, code and demo links, with the cover (0.75rem radius) at right from 900px. A project without a cover stays typographic; no placeholder box.
 - **Rows:** numbered list rows (muted tabular index, title-scale name, muted one-line description, chips, links), each closed by a rule.
 
+### Stack dial
+- Every technology is a spoke set radially around a circle (words on the left half turn 180° so they never read upside down), its group drawn as a hairline arc with a small gap between groups and named in the hub. A marigold index mark sits at 3 o'clock; the selected word turns to face it, gains 600 weight and a marigold dot, and the detail beside it (below on phones) shows its group, its name at headline scale with a marigold period, and links to the projects that use it, computed at build from the GitHub tech of each project. A technology with no project shows only its group and name, never an empty count.
+- **Input:** scrolling while the stage is held (sticky, under the header) turns the dial through every word once; arrow keys move one word, Home and End jump to the ends; a click or a drag turns it too and snaps on release. Arrows, clicks and drags shift an offset, so scrolling carries on from where the visitor left it. When scrolling stops the dial settles on the nearest word.
+- **Reduced motion and no JS:** the stage is not held and scroll does not turn the dial; arrows and clicks still select, without the turn. Without JavaScript the dial and the first word's detail stay visible.
+
 ### Timeline
-- A 1px rule spine on the left; each entry hangs off a 0.6rem marigold dot. Consecutive entries in the same group sit closer (1rem) and the following entry's dot turns hollow (ground fill, 1.5px marigold ring) to read as one continued stay.
+- A 1px rule spine on the left; each entry hangs off a 0.6rem marigold dot.
+- **Rails:** an entry with steps (roles inside a company, challenges inside a degree) carries a rail: a hairline with a 0.7rem dot per step, horizontal in three columns from 700px and vertical below. Dots are hollow (ground fill, 1.5px marigold ring) and filled for a marked step; a legend says what filled means (podium for challenges), or "present" in the period does. Challenge names follow "Challenge | partner", the partner muted.
 
 ### Hero logo (signature)
 - The owner's ambigram logo, flat SVG in marigold first, cross-fading to the 3D render (flat out over 0.6s, canvas in over 0.8s) once it is ready. It spins in to face the visitor, follows the pointer slightly, floats gently, and flips 180 degrees across the first viewport of scroll so `b` becomes `q`. Reduced motion holds a fixed pose; no WebGL or Save-Data keeps the flat SVG. Always decorative (`aria-hidden`); the name is the h1.
@@ -198,10 +204,10 @@ Text with an underline, always.
 ### Motion (GSAP, `src/components/Motion.astro`)
 - **Focal moment:** the hero name rises out of per-line masks, the orange period lands last, the lead un-blurs, and the bottom rule draws left to right, timed with the 3D logo's spin-in.
 - **Editorial rules:** each section's top rule draws in (`--rule-x` 0→1), the section number types itself, and the title rises line by line. Project rows draw their bottom rule the same way.
-- **Per section:** About lights up word by word with scroll (scrub); the featured cover opens through a clip-path mask with slight drift; Stack lists cascade column by column; the Path line grows with scroll and each dot pops as it is reached; the Contact title rises letter by letter and its period lands like the hero's; the footer logo turns 180° back from q to b.
+- **Per section:** About lights up word by word with scroll (scrub); the featured cover opens through a clip-path mask with slight drift; the Stack dial arrives with a quarter turn and then turns with scroll; the Path line grows with scroll, each dot pops as it is reached, and each rail draws itself as its stops light up in order; the Contact title rises letter by letter and its period lands like the hero's; the footer logo turns 180° back from q to b.
 - **Sparks:** moving the cursor over the hero throws sparks that arc under gravity and fade into the page background; at rest a few escape from the logo's edge. The canvas stops drawing when the hero is off screen. Physics lives in `src/lib/sparks.ts` (unit-tested).
 - **Feedback:** an orange reading-progress bar under the header, the active section underlined in the nav, arrows nudge on link hover, project rows shift on hover, and the theme dot turns 180° on toggle.
-- **Ease:** `expo.out` for arrivals, `power3.inOut` for drawn lines, `back.out` only for the two landing periods and the timeline dots.
+- **Ease:** `expo.out` for arrivals, `power3.inOut` for drawn lines, `back.out` only for the two landing periods and the timeline and rail dots.
 - **Safety:** content is visible by default. `<html class="motion">` (set only when motion is allowed) hides the hero until the script runs; a 3 s fallback removes it if the script never arrives. With reduced motion nothing moves; the progress bar and the active section still update.
 
 ## Do's and Don'ts

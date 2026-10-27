@@ -5,6 +5,7 @@ import snapshot from "../data/projects.snapshot.json";
 import { fmt, getDict } from "../i18n/index";
 import type { Lang } from "../i18n/types";
 import { pickFeatured } from "../lib/github/normalize";
+import { projectAnchor } from "../lib/stack";
 import type { Project } from "../lib/github/types";
 import Arrow from "./Arrow.astro";
 import { SECTION_IDS } from "./sections";
@@ -28,7 +29,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
     {projects.length === 0 && <p class="muted empty"><a class="link" href="https://github.com/lucvs07" {...ext}>{t.projects.empty}<Arrow /></a></p>}
 
     {featured && (
-      <article class="feat">
+      <article class="feat" id={projectAnchor(featured)}>
         <div class="feat-copy">
           <h3>{featured.name}</h3>
           {featured.description[lang] && <p class="desc">{featured.description[lang]}</p>}
@@ -44,7 +45,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
 
     <ol class="list">
       {rest.map((p, i) => (
-        <li class="row">
+        <li class="row" id={projectAnchor(p)}>
           <span class="i">{String(i + 2).padStart(2, "0")}</span>
           <div>
             <h3>{p.name}</h3>

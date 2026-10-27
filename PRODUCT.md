@@ -36,7 +36,7 @@ Full stack developer at Asaas (Skywalkers team, product invoices) and Computer E
 - GitHub projects (today six: DeereGo, DeereGo ESP32, CARI, Hungerdle, Pokedex, One Way); most READMEs have no screenshot yet and most repos have no About text.
 - Experience: Asaas, Full Stack Developer (Junior), Skywalkers team, product invoices, since Dec 2025; intern in the same team, May to Dec 2025. Ismart Online scholar, 2021 to 2023 (team-built mental health app).
 - Education: FIAP Computer Engineering (2024 to 2029); Etec Parque Belem, Informatics for the internet (2021 to 2023); ISI Dublin English, exchange by academic merit at Etec (Feb to Mar 2023).
-- Honors: NEXT SmartFinder Challenge, FIAP 2024, finalist and podium (location system with John Deere).
+- Honors (all at FIAP): NEXT SmartFinder Challenge | John Deere, 2024, finalist and podium (location system); Microsoft VisionBox Challenge | Aché, 2025, finalist; Industrial Safety Vision Challenge | SPI and Metaindústria, 2026, finalist and podium.
 - Languages: English (professional working), Spanish (elementary).
 - Profiles: LinkedIn, GitHub, HackerRank, Behance. Email and phone are deliberately not shown.
 - Absent and not to be fabricated: testimonials, client names, case studies, metrics, a downloadable CV, certifications (deliberately left out).
